@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collegare Talent — Site Index</title>
+<link rel="stylesheet" href="shared/tokens.css">
+<style>
+  .page-card {
+    display: block;
+    border: 1px solid var(--line);
+    padding: 32px;
+    transition: all 0.3s var(--ease);
+    background: var(--cream);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+  .page-card:hover {
+    background: var(--cream-warm);
+    border-color: var(--crimson);
+    transform: translateY(-4px);
+  }
+  .page-card .n {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--crimson);
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+  .page-card h3 {
+    font-family: var(--display);
+    font-size: 32px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .page-card p {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .page-card .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .page-card .meta .arrow {
+    font-size: 16px;
+    letter-spacing: 0;
+    transition: transform 0.3s;
+  }
+  .page-card:hover .meta .arrow { transform: translateX(6px); color: var(--crimson); }
+</style>
+</head>
+<body class="grain">
+  <main style="padding: 100px var(--gutter) 80px; max-width: 1600px; margin: 0 auto;">
+    <div style="margin-bottom: 60px;">
+      <div class="index-label" style="margin-bottom: 32px;">
+        <span class="num">i.</span><span>Site Index — Redesign Preview</span>
+      </div>
+      <h1 class="display" style="font-size: clamp(72px, 12vw, 180px); line-height: 0.88; letter-spacing: -0.03em;">
+        Collegare<span style="color: var(--crimson); font-style: italic;">.</span>
+      </h1>
+      <p class="body-lg" style="font-size: 20px; margin-top: 32px; max-width: 70ch;">
+        A proposed redesign of collegaretalentmanagement.com. Editorial, authoritative, DBA-adjacent — built on Instrument Serif + Be Vietnam Pro, anchored in a deep crimson and warm cream palette.
+      </p>
+    </div>
+
+    <div style="margin-bottom: 60px;">
+      <div class="eyebrow eyebrow--crimson" style="margin-bottom: 20px;">Homepage</div>
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        <a href="homepage.html" class="page-card">
+          <div class="n">01</div>
+          <h3>Homepage <em style="color: var(--crimson);">— Revamped</em></h3>
+          <p>Grail-inspired structure with Collegare's editorial branding. Creator video grid hero, press logos band, mission with hard stats, case-study video tiles, filterable 500+ brand wall, team preview, "In Numbers" stat block, and Connect form with application type radios. Authoritative, metric-led, video-forward.</p>
+          <div class="meta"><span>Primary direction</span><span class="arrow">→</span></div>
+        </a>
+        <a href="homepage-v2.html" class="page-card">
+          <div class="n">02</div>
+          <h3>Homepage — Bold</h3>
+          <p>Full-bleed crimson hero variant. Kept for reference.</p>
+          <div class="meta"><span>Alternate</span><span class="arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 80px;">
+      <div class="eyebrow eyebrow--crimson" style="margin-bottom: 20px;">Pillar Pages — Talent / Brands / Managers / Connect</div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <a href="management.html" class="page-card">
+          <div class="n">03</div>
+          <h3>Talent</h3>
+          <p>Filterable creator roster with portraits, categories, and follower counts.</p>
+          <div class="meta"><span>Roster</span><span class="arrow">→</span></div>
+        </a>
+        <a href="for-brands.html" class="page-card">
+          <div class="n">04</div>
+          <h3>Brands</h3>
+          <p>Capabilities, process, partner wall. For agencies and brand teams.</p>
+          <div class="meta"><span>Partnerships</span><span class="arrow">→</span></div>
+        </a>
+        <a href="managers.html" class="page-card">
+          <div class="n">05</div>
+          <h3>Managers <em style="color: var(--crimson);">(new)</em></h3>
+          <p>Recruitment pitch for talent managers wanting to bring their roster into the house.</p>
+          <div class="meta"><span>Partnership</span><span class="arrow">→</span></div>
+        </a>
+        <a href="contact.html" class="page-card">
+          <div class="n">06</div>
+          <h3>Connect</h3>
+          <p>Multi-tab inquiry form — Brand, Creator, Manager, Press.</p>
+          <div class="meta"><span>Conversion</span><span class="arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 80px;">
+      <div class="eyebrow eyebrow--crimson" style="margin-bottom: 20px;">Supporting Pages</div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        <a href="for-creators.html" class="page-card">
+          <div class="n">07</div>
+          <h3>For Creators</h3>
+          <p>What we do / don't, roster application form. (Linked from Talent.)</p>
+          <div class="meta"><span>Pillar</span><span class="arrow">→</span></div>
+        </a>
+        <a href="about.html" class="page-card">
+          <div class="n">08</div>
+          <h3>About</h3>
+          <p>Story, six principles, the team.</p>
+          <div class="meta"><span>Narrative</span><span class="arrow">→</span></div>
+        </a>
+      </div>
+    </div>
+
+    <div style="padding: 40px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+      <div>
+        <div class="small-caps" style="color: var(--crimson); margin-bottom: 12px;">Typography</div>
+        <div style="font-family: var(--display); font-size: 28px; margin-bottom: 4px;">Instrument Serif</div>
+        <div style="font-size: 13px; color: var(--ink-soft);">Display — headlines, editorial accents, italic voice</div>
+      </div>
+      <div>
+        <div class="small-caps" style="color: var(--crimson); margin-bottom: 12px;">&nbsp;</div>
+        <div style="font-family: var(--body); font-size: 22px; margin-bottom: 4px; font-weight: 500;">Be Vietnam Pro</div>
+        <div style="font-size: 13px; color: var(--ink-soft);">Body — UI, labels, small-caps, running text</div>
+      </div>
+      <div>
+        <div class="small-caps" style="color: var(--crimson); margin-bottom: 12px;">Primary</div>
+        <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+          <div style="width: 48px; height: 48px; background: #8B0D00;"></div>
+          <div style="width: 48px; height: 48px; background: #FEFCF0; border: 1px solid var(--line);"></div>
+          <div style="width: 48px; height: 48px; background: #0F0A07;"></div>
+        </div>
+        <div style="font-size: 11px; color: var(--ink-soft); font-family: monospace;">#8B0D00 · #FEFCF0 · #0F0A07</div>
+      </div>
+      <div>
+        <div class="small-caps" style="color: var(--crimson); margin-bottom: 12px;">Positioning</div>
+        <div style="font-family: var(--display); font-style: italic; font-size: 20px; line-height: 1.3;">
+          "A talent house for the cultural present."
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
