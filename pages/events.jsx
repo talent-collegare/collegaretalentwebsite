@@ -105,9 +105,9 @@ function EventsHero() {
 
       {/* Hero image strip */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6 }}>
-        <img src={REAL_PHOTOS.eventHero[0]} alt="Collegare On Tour event" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.eventHero[1]} alt="Collegare On Tour event" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.eventHero[2]} alt="Collegare On Tour event" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.eventHero[0]} alt="Collegare On Tour event" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.eventHero[1]} alt="Collegare On Tour event" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.eventHero[2]} alt="Collegare On Tour event" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
       </div>
     </section>
   );
@@ -125,7 +125,7 @@ function EventCard({ ev, featured }) {
     }}>
       {/* Image side */}
       <div style={{ position: 'relative', minHeight: 460, overflow: 'hidden' }}>
-        <img src={photo} alt={`Collegare On Tour — ${ev.city}, ${ev.month} ${ev.year}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+        <img loading="lazy" src={photo} alt={`Collegare On Tour — ${ev.city}, ${ev.month} ${ev.year}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
         {ev.status === 'next' && (
           <div style={{
             position: 'absolute', top: 24, left: 24,

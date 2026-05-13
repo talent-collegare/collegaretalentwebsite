@@ -26,10 +26,10 @@ function CreatorsHero() {
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6 }}>
-        <img src={talentAt(0)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
-        <img src={talentAt(1)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
-        <img src={talentAt(2)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
-        <img src={talentAt(3)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+        <img loading="lazy" src={talentAt(0)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+        <img loading="lazy" src={talentAt(1)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+        <img loading="lazy" src={talentAt(2)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+        <img loading="lazy" src={talentAt(3)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
       </div>
     </section>
   );

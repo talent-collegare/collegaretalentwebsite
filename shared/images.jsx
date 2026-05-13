@@ -48,7 +48,7 @@ function EditImg({ src, aspect = '3/4', label, caption, duotone = false, style =
       background: 'var(--cream-shadow)',
       ...style,
     }}>
-      <img src={PHOTOS[src] || src} alt={caption || ''} style={{
+      <img loading="lazy" src={PHOTOS[src] || src} alt={caption || ''} style={{
         width: '100%', height: '100%', objectFit: 'cover',
         filter: duotone ? 'grayscale(1) contrast(1.05)' : 'none',
       }}/>

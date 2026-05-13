@@ -25,9 +25,9 @@ function BrandsHero() {
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr 1fr', gap: 8 }}>
-        <img src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.events[1]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.events[2]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.events[1]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.events[2]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
       </div>
     </section>
   );
@@ -175,7 +175,7 @@ function EventReel({ src, label }) {
   return (
     <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       style={{ position: 'relative', aspectRatio: '4/5', overflow: 'hidden', background: 'var(--ink)' }}>
-      <video ref={videoRef} src={src} muted loop playsInline preload="auto"
+      <video ref={videoRef} src={src} muted loop playsInline preload="metadata"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
           transform: hovered ? 'scale(1.02)' : 'scale(1)', transition: 'transform 0.8s var(--ease)' }}/>
       <div style={{ position: 'absolute', inset: 0,
@@ -224,7 +224,7 @@ function Events() {
       {/* Photo strip */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
         {photos.map((p, i) => (
-          <img key={i} src={p} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
+          <img loading="lazy" key={i} src={p} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
         ))}
       </div>
     </section>

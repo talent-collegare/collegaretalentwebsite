@@ -24,7 +24,7 @@ function CarouselTile({ video, brand, line, cat }) {
   return (
     <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       style={{ position: 'relative', aspectRatio: '4/5', overflow: 'hidden', background: 'var(--ink)', cursor: 'pointer' }}>
-      <video ref={ref} src={VIDEOS[video]} muted loop playsInline preload="auto"
+      <video ref={ref} src={VIDEOS[video]} muted loop playsInline preload="metadata"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover',
           transform: hovered ? 'scale(1.02)' : 'scale(1)', transition: 'transform 0.8s var(--ease)' }}/>
       <div style={{ position: 'absolute', inset: 0,
@@ -173,7 +173,7 @@ function ByCreatorsMarquee({ hideHeader = false, showSubhead = true }) {
       <div style={{ overflow: 'hidden' }}>
         <div className="marquee-track" style={{ gap: 12, animationDuration: '60s' }}>
           {[...photos, ...photos].map((src, i) => (
-            <img key={i} src={src} alt="Collegare creator" style={{
+            <img loading="lazy" key={i} src={src} alt="Collegare creator" style={{
               width: 220, height: 280, objectFit: 'cover', flexShrink: 0,
               display: 'block',
             }}/>

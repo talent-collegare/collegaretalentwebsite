@@ -10,7 +10,7 @@ const NAV_LINKS = [
 function Logo({ color = 'var(--ink)', subtitle = 'Talent' }) {
   return (
     <a href="index.html" aria-label="Collegare home" style={{ display: 'flex', alignItems: 'center', gap: 12, color }}>
-      <img src="shared/collegare-logo.gif" alt="Collegare" style={{
+      <img loading="lazy" src="shared/collegare-logo.gif" alt="Collegare" style={{
         height: 36,
         width: 'auto',
         display: 'block',

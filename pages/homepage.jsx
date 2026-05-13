@@ -88,7 +88,7 @@ function VideoTile({ src, photoSrc, label, brand, line, aspect = '4/5', houseTag
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           style={{
             position: 'absolute', inset: 0, width: '100%', height: '100%',
             objectFit: 'cover',
@@ -97,7 +97,7 @@ function VideoTile({ src, photoSrc, label, brand, line, aspect = '4/5', houseTag
           }}
         />
       ) : photoSrc ? (
-        <img src={photoSrc} alt="Collegare creator portrait" style={{
+        <img loading="lazy" src={photoSrc} alt="Collegare creator portrait" style={{
           position: 'absolute', inset: 0, width: '100%', height: '100%',
           objectFit: 'cover',
           transform: hovered ? 'scale(1.04)' : 'scale(1)',
@@ -341,7 +341,7 @@ function PressBand() {
       <div style={{ overflow: 'hidden' }}>
         <div className="marquee-track" style={{ gap: 12, animationDuration: '60s' }}>
           {[...photos, ...photos].map((src, i) => (
-            <img key={i} src={src} alt="Collegare creator" style={{
+            <img loading="lazy" key={i} src={src} alt="Collegare creator" style={{
               width: 220, height: 280, objectFit: 'cover', flexShrink: 0,
               display: 'block',
             }}/>
@@ -375,7 +375,7 @@ function Mission() {
           <div className="index-label" style={{ marginBottom: 32 }}>
             <span className="num">i.</span><span>The House</span>
           </div>
-          <img src={REAL_PHOTOS.team.candid} alt="The Collegare team in studio" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+          <img loading="lazy" src={REAL_PHOTOS.team.candid} alt="The Collegare team in studio" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
           <div style={{
             marginTop: 20,
             fontFamily: 'var(--display)',
@@ -413,7 +413,7 @@ function Mission() {
 
           {/* Pillars w/ talent photo insert */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, marginBottom: 56, alignItems: 'start' }}>
-            <img src={REAL_PHOTOS.events[4]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', marginTop: 80 }}/>
+            <img loading="lazy" src={REAL_PHOTOS.events[4]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover', marginTop: 80 }}/>
             <div>
               <div className="small-caps" style={{ color: 'var(--crimson)', marginBottom: 16 }}>01 — Built On The Work</div>
               <h3 className="display" style={{ fontSize: 32, marginBottom: 16, letterSpacing: '-0.01em', lineHeight: 1.05 }}>
@@ -591,7 +591,7 @@ function Moments() {
           </div>
         </div>
       </div>
-      <img src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '21/9', objectFit: 'cover' }}/>
+      <img loading="lazy" src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '21/9', objectFit: 'cover' }}/>
     </section>
   );
 }
@@ -624,7 +624,7 @@ function Team() {
           { name: 'Skylar', role: 'Co-founder, CMO', imgKey: 'skylar' },
         ].map(t => (
           <div key={t.name} style={{ position: 'relative', overflow: 'hidden' }}>
-            <img src={REAL_PHOTOS.team[t.imgKey]} alt={t.name} style={{
+            <img loading="lazy" src={REAL_PHOTOS.team[t.imgKey]} alt={t.name} style={{
               width: '100%', aspectRatio: '4/5', objectFit: 'cover',
             }}/>
             <div style={{

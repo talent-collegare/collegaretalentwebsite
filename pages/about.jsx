@@ -15,9 +15,9 @@ function AboutHero() {
         We started a different kind of house.
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr', gap: 8, marginBottom: 0 }}>
-        <img src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.events[1]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.events[2]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.events[1]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.events[2]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
       </div>
     </section>
   );
@@ -46,8 +46,8 @@ function Story() {
             with a smaller group of brands who understand what they're buying when they buy a creator's trust.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, margin: '20px 0' }}>
-            <img src={REAL_PHOTOS.events[3]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-            <img src={talentAt(0)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+            <img loading="lazy" src={REAL_PHOTOS.events[3]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+            <img loading="lazy" src={talentAt(0)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
           </div>
           <p style={{ fontSize: 17, lineHeight: 1.7, color: 'var(--ink-soft)' }}>
             We sit between talent and brands — sometimes as manager, sometimes as agency,
@@ -105,7 +105,7 @@ function Team() {
 
       {/* Wide candid image */}
       <div style={{ marginBottom: 60 }}>
-        <img src={REAL_PHOTOS.team.candid} alt="The Collegare team in studio" style={{ width: '100%', aspectRatio: '16/7', objectFit: 'cover' }}/>
+        <img loading="lazy" src={REAL_PHOTOS.team.candid} alt="The Collegare team in studio" style={{ width: '100%', aspectRatio: '16/7', objectFit: 'cover' }}/>
         <div style={{ marginTop: 14, display: 'flex', justifyContent: 'space-between', fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)' }}>
           <span>The House, in studio</span>
           <span style={{ fontFamily: 'var(--display)', fontStyle: 'italic', textTransform: 'none', letterSpacing: 0, color: 'var(--crimson)', fontSize: 16 }}>February, 2026</span>
@@ -115,7 +115,7 @@ function Team() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'var(--line)' }}>
         {team.map((t) => (
           <div key={t.name} style={{ background: 'var(--cream)', padding: 0 }}>
-            <img src={REAL_PHOTOS.team[t.imgKey]} alt={t.name} style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+            <img loading="lazy" src={REAL_PHOTOS.team[t.imgKey]} alt={t.name} style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
             <div style={{ padding: '24px 28px 32px' }}>
               <div style={{ fontFamily: 'var(--display)', fontSize: 36, letterSpacing: '-0.01em', lineHeight: 1, marginBottom: 8 }}>{t.name}</div>
               <div className="small-caps" style={{ color: 'var(--crimson)' }}>{t.role}</div>

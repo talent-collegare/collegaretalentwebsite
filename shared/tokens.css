@@ -364,29 +364,12 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     padding-top: 100px !important;
   }
 
-  /* Homepage hero: keep team video + 2 photos, drop the rest so users
-     see the bottom CTAs without scrolling forever */
-  [style*="grid-template-columns: 1.2fr 1fr 1fr"] > div:nth-child(n+4) {
-    display: none !important;
-  }
-
-  /* For-creators hero: keep 2 of 4 talent shots */
-  [style*="grid-template-columns: repeat(4, 1fr)"] > img:nth-child(n+3) {
-    display: none !important;
-  }
-
   /* Event cards: shorter image side, tighter content padding */
   [style*="min-height: 460px"] {
     min-height: 280px !important;
   }
   [style*="padding: '48px 48px 56px'"] {
     padding: 28px 22px 36px !important;
-  }
-
-  /* About + careers hero strips: keep 2 of 3 wide photos */
-  [style*="grid-template-columns: 1.6fr 1fr 1fr"] > img:nth-child(n+3),
-  [style*="grid-template-columns: 1fr 1.3fr 1fr"] > img:nth-child(n+3) {
-    display: none !important;
   }
 
   /* Footer bottom row gets uppercased small text on multiple lines */
