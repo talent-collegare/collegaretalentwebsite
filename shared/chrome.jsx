@@ -9,7 +9,7 @@ const NAV_LINKS = [
 
 function Logo({ color = 'var(--ink)' }) {
   return (
-    <a href="homepage.html" style={{ display: 'flex', alignItems: 'center', gap: 12, color }}>
+    <a href="index.html" style={{ display: 'flex', alignItems: 'center', gap: 12, color }}>
       <img src="shared/collegare-logo.gif" alt="Collegare" style={{
         height: 36,
         width: 'auto',

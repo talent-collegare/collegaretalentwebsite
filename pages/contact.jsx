@@ -86,7 +86,7 @@ function ContactPage() {
                   <p className="body-lg" style={{ fontSize: 18 }}>
                     We've received your note. Someone from the team will be in touch within 48 hours.
                   </p>
-                  <a href="homepage.html" className="btn btn--ghost" style={{ marginTop: 32 }}>Back to home</a>
+                  <a href="index.html" className="btn btn--ghost" style={{ marginTop: 32 }}>Back to home</a>
                 </div>
               ) : (
                 <form onSubmit={e => { e.preventDefault(); setSent(true); }}>

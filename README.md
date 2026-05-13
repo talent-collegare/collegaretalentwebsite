@@ -4,8 +4,7 @@ Static website for Collegare Talent Management.
 
 ## Structure
 
-- `index.html` — Site index / preview page
-- `homepage.html` — Main homepage
+- `index.html` — Main homepage
 - `about.html`, `for-brands.html`, `for-creators.html`, etc. — Site pages
 - `shared/` — Shared styles (`tokens.css`) and React components used across pages
 - `pages/` — Page-specific React components
