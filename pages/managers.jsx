@@ -1,23 +1,21 @@
 // Managers — recruitment / partnership page for talent managers wanting to join Collegare
 
 function MapMark() {
-  // Stylized dotted world map — matches the editorial / cream + crimson palette
-  // Pure SVG so it's tasteful and lightweight; no stock imagery needed.
+  // Stylized dotted world map — single Texas marker. Editorial, restrained.
   return (
     <div style={{ width: '100%', position: 'relative' }}>
       <svg viewBox="0 0 800 360" style={{ width: '100%', height: 'auto', display: 'block' }}>
         <defs>
           <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#8B0D00" stopOpacity="0.8"/>
+            <stop offset="0%" stopColor="#8B0D00" stopOpacity="0.6"/>
             <stop offset="100%" stopColor="#8B0D00" stopOpacity="0"/>
           </radialGradient>
         </defs>
 
         {/* Dot grid forming a stylized world map silhouette */}
-        <g fill="#0F0A07" opacity="0.18">
+        <g fill="#0F0A07" opacity="0.12">
           {(() => {
             const dots = [];
-            // Rough continent silhouettes via grid sampling
             const inLand = (x, y) => {
               // North America
               if (x >= 60 && x <= 230 && y >= 70 && y <= 200 && (x - 145) ** 2 / 8000 + (y - 130) ** 2 / 4000 < 1) return true;
@@ -46,29 +44,15 @@ function MapMark() {
           })()}
         </g>
 
-        {/* Our markers — TX, NY, LA */}
-        {[
-          { x: 165, y: 140, label: 'New York' },
-          { x: 132, y: 152, label: 'Texas' },
-          { x: 92,  y: 142, label: 'Los Angeles' },
-          { x: 545, y: 180, label: 'Remote — anywhere' },
-        ].map((p, i) => (
-          <g key={p.label}>
-            <circle cx={p.x} cy={p.y} r="22" fill="url(#cityGlow)" />
-            <circle cx={p.x} cy={p.y} r="4" fill="#8B0D00" />
-            <line x1={p.x} y1={p.y - 4} x2={p.x} y2={p.y - 24} stroke="#8B0D00" strokeWidth="0.6" opacity="0.4" />
-            <text x={p.x} y={p.y - 28} textAnchor="middle" fontSize="9" fontFamily="Be Vietnam Pro, sans-serif" letterSpacing="1.5" fill="#0F0A07" fontWeight="500">
-              {p.label.toUpperCase()}
-            </text>
-          </g>
-        ))}
-
-        {/* Subtle connecting arcs from US to "anywhere" */}
-        {[[92, 142], [132, 152], [165, 140]].map(([sx, sy], i) => (
-          <path key={i}
-            d={`M ${sx} ${sy} Q ${(sx + 545) / 2} ${Math.min(sy, 180) - 60}, 545 180`}
-            stroke="#8B0D00" strokeWidth="0.8" fill="none" opacity="0.35" strokeDasharray="2 4" />
-        ))}
+        {/* Single Texas marker — the home base */}
+        <g>
+          <circle cx={132} cy={152} r="28" fill="url(#cityGlow)" />
+          <circle cx={132} cy={152} r="4.5" fill="#8B0D00" />
+          <line x1={132} y1={148} x2={132} y2={124} stroke="#8B0D00" strokeWidth="0.6" opacity="0.5" />
+          <text x={132} y={120} textAnchor="middle" fontSize="9" fontFamily="Be Vietnam Pro, sans-serif" letterSpacing="2" fill="#0F0A07" fontWeight="500">
+            TEXAS — HQ
+          </text>
+        </g>
       </svg>
     </div>
   );

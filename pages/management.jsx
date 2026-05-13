@@ -146,7 +146,7 @@ function TalentEthos() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 80, alignItems: 'start', marginBottom: 80 }}>
         <div style={{ position: 'sticky', top: 120 }}>
           <div className="index-label" style={{ marginBottom: 24 }}>
-            <span className="num">iii.</span><span>Our Ethos</span>
+            <span className="num">ii.</span><span>Our Ethos</span>
           </div>
           <img src={photos[0]} alt="" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
         </div>
@@ -342,7 +342,7 @@ function CaseStudiesPage() {
         <CaseHero />
         <TalentEthos />
         <CaseCarousel />
-        <FAQ eyebrowNum="iv" items={TALENT_FAQS} />
+        <FAQ eyebrowNum="iii" items={TALENT_FAQS} />
         <CaseCTA />
       </main>
       <ByCreatorsMarquee />

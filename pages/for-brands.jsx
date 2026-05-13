@@ -9,7 +9,7 @@ function BrandsHero() {
             <span className="num">i.</span><span>For Brands</span>
           </div>
           <h1 className="display" style={{ fontSize: 'clamp(64px, 10vw, 160px)', lineHeight: 0.88, letterSpacing: '-0.025em' }}>
-            Built by <em>operators</em>.<br/>Connected to <em style={{ color: 'var(--crimson)' }}>200+</em> brands.
+            Built by <em>operators</em>.<br/>Connected to the <em style={{ color: 'var(--crimson)' }}>brands</em> defining the season.
           </h1>
         </div>
         <div>
@@ -122,7 +122,7 @@ function Clients() {
   return (
     <section style={{ padding: 'var(--section) var(--gutter)' }}>
       <div className="index-label" style={{ marginBottom: 40 }}>
-        <span className="num">iv.</span><span>Selected Clients</span>
+        <span className="num">v.</span><span>Selected Clients</span>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '1px solid var(--line)' }}>
         {clients.map((c, i) => (
@@ -258,7 +258,7 @@ function ForBrands() {
         <Process />
         <Events />
         <Clients />
-        <FAQ eyebrowNum="v" items={BRAND_FAQS} />
+        <FAQ eyebrowNum="vi" items={BRAND_FAQS} />
         <BrandsCTA />
         <ByCreatorsMarquee />
       </main>

@@ -11,9 +11,9 @@ function CreatorsHero() {
       </h1>
       <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr', gap: 40, alignItems: 'end', paddingTop: 40, borderTop: '1px solid var(--line-soft)', marginBottom: 60 }}>
         <p className="body-lg" style={{ fontSize: 19 }}>
-          We represent 80+ creators across fashion, beauty, culture, food, and lifestyle — and we have secured over $42M
-          in earned media for them. Full-service management: deals, contracts, creative direction, brand development,
-          and the long view. No follower minimums. No tier structure. Taste is the filter.
+          We represent creators across fashion, beauty, culture, food, and lifestyle — and we build the careers,
+          earned media, and brand partnerships behind them. Full-service management: deals, contracts, creative direction,
+          brand development, and the long view. No follower minimums. No tier structure. Taste is the filter.
         </p>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <a href="#apply" className="btn btn--primary">Apply to the Roster <span className="arrow">→</span></a>
@@ -200,7 +200,7 @@ function ForCreators() {
         <WhatWeDont />
         <Apply />
       </main>
-      <SelectedWorkCarousel eyebrowNum="iv" headline="Campaigns in motion." />
+      <SelectedWorkCarousel eyebrowNum="v" headline="Campaigns in motion." />
       <ByCreatorsMarquee />
       <Footer />
     </div>

@@ -225,3 +225,81 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @keyframes caretBlink {
   to { visibility: hidden; }
 }
+
+/* =============================================================================
+ * Mobile responsive overrides
+ * Most layouts use inline grid styles. These attribute selectors flatten
+ * multi-column grids into single column under 768px without touching JSX.
+ * ============================================================================= */
+@media (max-width: 768px) {
+  :root {
+    --gutter: 18px;
+    --section: 64px;
+  }
+
+  /* Stack any 3+ column or asymmetric grid */
+  [style*="grid-template-columns: repeat(3"],
+  [style*="grid-template-columns: repeat(4"],
+  [style*="grid-template-columns: repeat(5"],
+  [style*="grid-template-columns: 1fr 1fr 1fr"],
+  [style*="grid-template-columns: 1fr 2fr"],
+  [style*="grid-template-columns: 2fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.4fr"],
+  [style*="grid-template-columns: 1fr 1.6fr"],
+  [style*="grid-template-columns: 1.5fr 1fr 1fr"],
+  [style*="grid-template-columns: 1.6fr 1fr 1fr"],
+  [style*="grid-template-columns: 1.4fr 1fr"],
+  [style*="grid-template-columns: 1.2fr 1fr 1fr"],
+  [style*="grid-template-columns: 60px 1fr 2fr"],
+  [style*="grid-template-columns: 2fr 1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1.3fr 1fr"],
+  [style*="grid-template-columns: 1fr auto 1fr"],
+  [style*="grid-template-columns: 1.2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Job rows: collapse to title + meta */
+  [style*="grid-template-columns: 60px 3fr 1fr 1fr 1.2fr 40px"] {
+    grid-template-columns: auto 1fr !important;
+    grid-row-gap: 6px !important;
+  }
+
+  /* Drop sticky positioning so left rails don't stick on mobile */
+  [style*="position: sticky"] {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  /* Tighter nav, hide internal nav links (logo + Connect remain) */
+  nav {
+    padding: 12px var(--gutter) !important;
+  }
+  nav > div:nth-of-type(1) {
+    display: none !important;
+  }
+
+  /* Footer columns stack */
+  footer [style*="grid-template-columns: 2fr 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  footer [style*="justify-content: space-between"] {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Carousel tiles a touch wider for thumb scrolling */
+  .case-carousel > div {
+    flex-basis: 80vw !important;
+  }
+
+  /* Hero media grid: don't double-span the team video on mobile */
+  [style*="grid-row: span 2"] {
+    grid-row: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even tighter on phones */
+  :root { --section: 48px; }
+}

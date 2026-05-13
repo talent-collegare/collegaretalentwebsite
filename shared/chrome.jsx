@@ -7,9 +7,9 @@ const NAV_LINKS = [
   { label: 'On Tour', href: 'events.html' },
 ];
 
-function Logo({ color = 'var(--ink)' }) {
+function Logo({ color = 'var(--ink)', subtitle = 'Talent' }) {
   return (
-    <a href="index.html" style={{ display: 'flex', alignItems: 'center', gap: 12, color }}>
+    <a href="index.html" aria-label="Collegare home" style={{ display: 'flex', alignItems: 'center', gap: 12, color }}>
       <img src="shared/collegare-logo.gif" alt="Collegare" style={{
         height: 36,
         width: 'auto',
@@ -29,7 +29,7 @@ function Logo({ color = 'var(--ink)' }) {
         display: 'flex',
         alignItems: 'center',
       }}>
-        Talent
+        {subtitle}
       </span>
     </a>
   );
@@ -66,7 +66,7 @@ function Nav({ variant = 'light', current = '' }) {
 
   return (
     <nav style={navStyle}>
-      <Logo color="currentColor" />
+      <Logo color="currentColor" subtitle={current || 'Talent'} />
       <div style={{
         display: 'flex',
         gap: 34,
@@ -147,10 +147,10 @@ function Footer({ dark = false }) {
         <div>
           <div className="eyebrow" style={{ color: 'rgba(254,252,240,0.6)', marginBottom: 16 }}>Follow</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 13 }}>
-            <a style={{ opacity: 0.85 }}>Instagram</a>
-            <a style={{ opacity: 0.85 }}>TikTok</a>
-            <a style={{ opacity: 0.85 }}>LinkedIn</a>
-            <a style={{ opacity: 0.85 }}>Spotify</a>
+            <a href="https://instagram.com/collegare" target="_blank" rel="noopener" style={{ opacity: 0.85 }}>Instagram</a>
+            <a href="https://tiktok.com/@collegare" target="_blank" rel="noopener" style={{ opacity: 0.85 }}>TikTok</a>
+            <a href="https://linkedin.com/company/collegare" target="_blank" rel="noopener" style={{ opacity: 0.85 }}>LinkedIn</a>
+            <a href="mailto:contact@collegaretalentmanagement.com" style={{ opacity: 0.85 }}>Email</a>
           </div>
         </div>
       </div>

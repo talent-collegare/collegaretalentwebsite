@@ -182,7 +182,7 @@ function TypingShaping() {
   React.useEffect(() => {
     let timer;
     if (phase === 'hold') {
-      timer = setTimeout(() => setPhase('erasing'), 30000);
+      timer = setTimeout(() => setPhase('erasing'), 7000);
     } else if (phase === 'erasing') {
       if (text.length === 0) {
         timer = setTimeout(() => setPhase('typing'), 400);
@@ -299,10 +299,10 @@ function Hero() {
         </div>
         <div style={{ fontSize: 12, color: 'var(--ink-soft)', lineHeight: 1.7 }}>
           <div className="small-caps" style={{ color: 'var(--crimson)', marginBottom: 6 }}>In this issue</div>
-          01. Our story<br/>
-          02. Selected campaigns<br/>
-          03. The brands we build with<br/>
-          04. The team
+          01. The house<br/>
+          02. The team<br/>
+          03. Selected campaigns<br/>
+          04. Get in touch
         </div>
       </div>
     </section>
@@ -373,7 +373,7 @@ function Mission() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 80, alignItems: 'start' }}>
         <div style={{ position: 'sticky', top: 120 }}>
           <div className="index-label" style={{ marginBottom: 32 }}>
-            <span className="num">ii.</span><span>The House</span>
+            <span className="num">i.</span><span>The House</span>
           </div>
           <img src={REAL_PHOTOS.team.candid} alt="" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
           <div style={{
@@ -584,10 +584,10 @@ function Moments() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, alignItems: 'end', marginBottom: 32 }}>
         <div>
           <div className="index-label" style={{ marginBottom: 16 }}>
-            <span className="num">iv.</span><span>A Moment</span>
+            <span className="num">ii.</span><span>A Moment</span>
           </div>
           <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 32, color: 'var(--crimson)', lineHeight: 1.1, marginTop: 24 }}>
-            From the house —<br/>February 2026.
+            From the house —<br/>{new Date().toLocaleString('en-US', { month: 'long' })} {new Date().getFullYear()}.
           </div>
         </div>
       </div>
@@ -606,7 +606,7 @@ function Team() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 60, alignItems: 'end', marginBottom: 48 }}>
         <div>
           <div className="index-label" style={{ marginBottom: 20 }}>
-            <span className="num">v.</span><span>The Team</span>
+            <span className="num">iii.</span><span>The Team</span>
           </div>
           <h2 className="display" style={{ fontSize: 'clamp(40px, 5.5vw, 84px)', letterSpacing: '-0.025em', lineHeight: 0.95 }}>
             A small <em style={{ color: 'var(--crimson)' }}>house</em>, on purpose.
@@ -659,7 +659,7 @@ function InNumbers() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'end', marginBottom: 64 }}>
         <div>
           <div className="index-label" style={{ color: 'rgba(254,252,240,0.7)', marginBottom: 20 }}>
-            <span className="num" style={{ color: 'var(--cream-warm)' }}>vi.</span>
+            <span className="num" style={{ color: 'var(--cream-warm)' }}>iv.</span>
             <span>In Numbers</span>
           </div>
           <h2 className="display" style={{ fontSize: 'clamp(56px, 8.5vw, 130px)', letterSpacing: '-0.025em', lineHeight: 0.92 }}>
@@ -721,7 +721,7 @@ function Connect() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80, alignItems: 'start' }}>
         <div>
           <div className="index-label" style={{ marginBottom: 20 }}>
-            <span className="num">vii.</span><span>Get in Touch</span>
+            <span className="num">vi.</span><span>Get in Touch</span>
           </div>
           <h2 className="display" style={{ fontSize: 'clamp(56px, 9vw, 120px)', letterSpacing: '-0.025em', lineHeight: 0.9, marginBottom: 32 }}>
             Let's <em>talk</em>.
@@ -735,7 +735,22 @@ function Connect() {
           </div>
         </div>
 
-        <form onSubmit={e => { e.preventDefault(); window.location.href = 'contact.html'; }}>
+        <form onSubmit={e => {
+          e.preventDefault();
+          const data = new FormData(e.currentTarget);
+          const subject = `Collegare inquiry — ${type}`;
+          const body = [
+            `Type: ${type}`,
+            `Name: ${data.get('name') || ''}`,
+            `Organization: ${data.get('org') || ''}`,
+            `Email: ${data.get('email') || ''}`,
+            `Role: ${data.get('role') || ''}`,
+            '',
+            'Brief:',
+            data.get('brief') || '',
+          ].join('\n');
+          window.location.href = `mailto:contact@collegaretalentmanagement.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }}>
           <div style={{ marginBottom: 32 }}>
             <div className="small-caps" style={{ marginBottom: 16, color: 'var(--ink-soft)' }}>Application Type</div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
@@ -762,7 +777,7 @@ function Connect() {
             ].map(f => (
               <div key={f.name}>
                 <label style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)', fontWeight: 500, marginBottom: 6, display: 'block' }}>{f.label}</label>
-                <input type={f.type || 'text'} style={{
+                <input name={f.name} type={f.type || 'text'} style={{
                   width: '100%', background: 'transparent', border: 'none',
                   borderBottom: '1px solid var(--line)', padding: '12px 0',
                   fontSize: 15, fontFamily: 'var(--body)', color: 'var(--ink)', outline: 'none',
@@ -773,7 +788,7 @@ function Connect() {
 
           <div style={{ marginBottom: 32 }}>
             <label style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)', fontWeight: 500, marginBottom: 6, display: 'block' }}>The Brief</label>
-            <textarea style={{
+            <textarea name="brief" style={{
               width: '100%', background: 'transparent', border: 'none',
               borderBottom: '1px solid var(--line)', padding: '12px 0',
               fontSize: 15, fontFamily: 'var(--body)', color: 'var(--ink)', outline: 'none',
@@ -805,7 +820,7 @@ function HomePage() {
         <Moments />
         <Team />
         <InNumbers />
-        <SelectedWorkCarousel eyebrowNum="vi" headline="Campaigns in motion." />
+        <SelectedWorkCarousel eyebrowNum="v" headline="Campaigns in motion." />
         <Connect />
         <ByCreatorsMarquee />
       </main>
