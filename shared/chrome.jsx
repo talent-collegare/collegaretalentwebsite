@@ -38,12 +38,19 @@ function Logo({ color = 'var(--ink)', subtitle = 'Talent' }) {
 function Nav({ variant = 'light', current = '' }) {
   const dark = variant === 'dark';
   const [scrolled, setScrolled] = React.useState(false);
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Lock background scroll while the mobile menu is open
+  React.useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   const navStyle = {
     position: 'fixed',
@@ -65,39 +72,117 @@ function Nav({ variant = 'light', current = '' }) {
   };
 
   return (
-    <nav style={navStyle}>
-      <Logo color="currentColor" subtitle={current || 'Talent'} />
-      <div style={{
-        display: 'flex',
-        gap: 34,
-        alignItems: 'center',
-        fontSize: 13,
-        letterSpacing: '0.02em',
-      }}>
-        {NAV_LINKS.map(l => (
-          <a key={l.href} href={l.href} style={{
-            position: 'relative',
-            opacity: current === l.label ? 1 : 0.72,
-            fontWeight: current === l.label ? 500 : 400,
-            transition: 'opacity 0.3s',
+    <>
+      <nav style={navStyle}>
+        <Logo color="currentColor" subtitle={current || 'Talent'} />
+
+        <div className="nav-desktop" style={{
+          display: 'flex',
+          gap: 34,
+          alignItems: 'center',
+          fontSize: 13,
+          letterSpacing: '0.02em',
+        }}>
+          {NAV_LINKS.map(l => (
+            <a key={l.href} href={l.href} style={{
+              position: 'relative',
+              opacity: current === l.label ? 1 : 0.72,
+              fontWeight: current === l.label ? 500 : 400,
+              transition: 'opacity 0.3s',
+            }}
+               onMouseEnter={e => e.currentTarget.style.opacity = 1}
+               onMouseLeave={e => e.currentTarget.style.opacity = current === l.label ? 1 : 0.72}
+            >
+              {l.label}
+              {current === l.label && (
+                <span style={{
+                  position: 'absolute', bottom: -6, left: 0, right: 0, height: 1,
+                  background: 'var(--crimson)',
+                }}/>
+              )}
+            </a>
+          ))}
+        </div>
+
+        <a href="contact.html" className="btn btn--primary nav-desktop-cta" style={{ padding: '10px 18px', fontSize: 11 }}>
+          Connect <span className="arrow">→</span>
+        </a>
+
+        <button
+          className="nav-hamburger"
+          aria-label="Open menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen(true)}
+          style={{
+            width: 44, height: 44,
+            display: 'none',
+            alignItems: 'center', justifyContent: 'center',
+            color: 'currentColor',
           }}
-             onMouseEnter={e => e.currentTarget.style.opacity = 1}
-             onMouseLeave={e => e.currentTarget.style.opacity = current === l.label ? 1 : 0.72}
-          >
-            {l.label}
-            {current === l.label && (
-              <span style={{
-                position: 'absolute', bottom: -6, left: 0, right: 0, height: 1,
-                background: 'var(--crimson)',
-              }}/>
-            )}
-          </a>
-        ))}
-      </div>
-      <a href="contact.html" className="btn btn--primary" style={{ padding: '10px 18px', fontSize: 11 }}>
-        Connect <span className="arrow">→</span>
-      </a>
-    </nav>
+        >
+          <span style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <span style={{ width: 22, height: 1.5, background: 'currentColor' }}/>
+            <span style={{ width: 22, height: 1.5, background: 'currentColor' }}/>
+            <span style={{ width: 22, height: 1.5, background: 'currentColor' }}/>
+          </span>
+        </button>
+      </nav>
+
+      {menuOpen && (
+        <div className="nav-overlay" style={{
+          position: 'fixed', inset: 0, zIndex: 200,
+          background: 'var(--cream)',
+          color: 'var(--ink)',
+          display: 'flex', flexDirection: 'column',
+          padding: '20px var(--gutter) 32px',
+          overflowY: 'auto',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 56 }}>
+            <Logo color="var(--ink)" subtitle={current || 'Talent'} />
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              style={{
+                width: 44, height: 44,
+                border: '1px solid var(--line)', borderRadius: '50%',
+                fontSize: 22, lineHeight: 1, color: 'var(--ink)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+              }}
+            >×</button>
+          </div>
+
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 4, flex: 1 }}>
+            {[...NAV_LINKS, { label: 'Contact', href: 'contact.html' }].map(l => {
+              const active = current === l.label;
+              return (
+                <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} style={{
+                  fontFamily: 'var(--display)',
+                  fontSize: 'clamp(40px, 11vw, 72px)',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.05,
+                  padding: '12px 0',
+                  borderBottom: '1px solid var(--line)',
+                  color: active ? 'var(--crimson)' : 'var(--ink)',
+                  fontStyle: active ? 'italic' : 'normal',
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+                }}>
+                  <span>{l.label}</span>
+                  <span style={{ fontSize: 18, opacity: 0.5 }}>→</span>
+                </a>
+              );
+            })}
+          </nav>
+
+          <div style={{ paddingTop: 32, marginTop: 24, borderTop: '1px solid var(--line)' }}>
+            <div className="small-caps" style={{ color: 'var(--crimson)', marginBottom: 8, fontSize: 10 }}>Direct</div>
+            <a href="mailto:contact@collegaretalentmanagement.com"
+               style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 20, color: 'var(--crimson)' }}>
+              contact@collegaretalentmanagement.com
+            </a>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

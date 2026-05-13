@@ -231,10 +231,27 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
  * Most layouts use inline grid styles. These attribute selectors flatten
  * multi-column grids into single column under 768px without touching JSX.
  * ============================================================================= */
+
+/* Hamburger button — desktop default hides it */
+.nav-hamburger { display: none !important; }
+
 @media (max-width: 768px) {
   :root {
     --gutter: 18px;
-    --section: 64px;
+    --section: 56px;
+  }
+
+  body { font-size: 14px; }
+
+  /* Nav: swap inline links + Connect CTA for hamburger */
+  nav {
+    padding: 12px var(--gutter) !important;
+  }
+  .nav-desktop, .nav-desktop-cta {
+    display: none !important;
+  }
+  .nav-hamburger {
+    display: flex !important;
   }
 
   /* Stack any 3+ column or asymmetric grid */
@@ -264,6 +281,9 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     grid-template-columns: auto 1fr !important;
     grid-row-gap: 6px !important;
   }
+  [style*="grid-template-columns: 60px 3fr 1fr 1fr 1.2fr 40px"] > *:nth-child(n+3) {
+    display: none;
+  }
 
   /* Drop sticky positioning so left rails don't stick on mobile */
   [style*="position: sticky"] {
@@ -271,35 +291,127 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     top: auto !important;
   }
 
-  /* Tighter nav, hide internal nav links (logo + Connect remain) */
-  nav {
-    padding: 12px var(--gutter) !important;
-  }
-  nav > div:nth-of-type(1) {
-    display: none !important;
+  /* Hero media grid: don't double-span the team video on mobile */
+  [style*="grid-row: span 2"] {
+    grid-row: auto !important;
   }
 
   /* Footer columns stack */
   footer [style*="grid-template-columns: 2fr 1fr 1fr 1fr"] {
     grid-template-columns: 1fr 1fr !important;
+    gap: 28px !important;
   }
   footer [style*="justify-content: space-between"] {
     flex-wrap: wrap;
     gap: 12px;
   }
 
-  /* Carousel tiles a touch wider for thumb scrolling */
+  /* Carousel tiles wider for thumb scrolling, snap-aligned */
   .case-carousel > div {
-    flex-basis: 80vw !important;
+    flex-basis: 82vw !important;
   }
 
-  /* Hero media grid: don't double-span the team video on mobile */
-  [style*="grid-row: span 2"] {
-    grid-row: auto !important;
+  /* "By Creators, For Creators" marquee — shrink images so they don't
+     dwarf the phone viewport */
+  .marquee-track img {
+    width: 150px !important;
+    height: 200px !important;
+  }
+  .marquee-track {
+    gap: 8px !important;
+  }
+
+  /* Tap targets: bump button vertical padding so links are reachable */
+  .btn {
+    padding: 14px 22px;
+    min-height: 44px;
+  }
+
+  /* Heading caps — phone-friendly minimums override clamp() floors */
+  h1.display, .display[style*="font-size: clamp(72px"], .display[style*="font-size: clamp(64px"] {
+    font-size: clamp(40px, 11vw, 64px) !important;
+    line-height: 0.95 !important;
+  }
+  h2.display, .display[style*="font-size: clamp(56px"], .display[style*="font-size: clamp(48px"] {
+    font-size: clamp(32px, 9vw, 52px) !important;
+    line-height: 1 !important;
+  }
+  h3.display {
+    font-size: clamp(22px, 6vw, 30px) !important;
+  }
+
+  /* Form inputs comfortable on phone */
+  input, select, textarea {
+    font-size: 16px !important; /* prevents iOS zoom on focus */
+  }
+
+  /* Forms: stack 2-col field grids */
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Hero meta row: stack the date/time blocks */
+  [style*="grid-template-columns: 1fr auto 1fr"] > * {
+    text-align: left !important;
+  }
+
+  /* Bottom-of-section index counters wrap, never overflow */
+  .small-caps { font-size: 10px !important; }
+
+  /* Section padding for big sections */
+  section[style*="padding: '160px"], section[style*="padding: 160px"] {
+    padding-top: 100px !important;
+  }
+
+  /* Homepage hero: keep team video + 2 photos, drop the rest so users
+     see the bottom CTAs without scrolling forever */
+  [style*="grid-template-columns: 1.2fr 1fr 1fr"] > div:nth-child(n+4) {
+    display: none !important;
+  }
+
+  /* For-creators hero: keep 2 of 4 talent shots */
+  [style*="grid-template-columns: repeat(4, 1fr)"] > img:nth-child(n+3) {
+    display: none !important;
+  }
+
+  /* Event cards: shorter image side, tighter content padding */
+  [style*="min-height: 460px"] {
+    min-height: 280px !important;
+  }
+  [style*="padding: '48px 48px 56px'"] {
+    padding: 28px 22px 36px !important;
+  }
+
+  /* About + careers hero strips: keep 2 of 3 wide photos */
+  [style*="grid-template-columns: 1.6fr 1fr 1fr"] > img:nth-child(n+3),
+  [style*="grid-template-columns: 1fr 1.3fr 1fr"] > img:nth-child(n+3) {
+    display: none !important;
+  }
+
+  /* Footer bottom row gets uppercased small text on multiple lines */
+  footer [style*="font-size: 11"][style*="text-transform: uppercase"] {
+    font-size: 10px !important;
+    text-align: left !important;
   }
 }
 
 @media (max-width: 480px) {
-  /* Even tighter on phones */
-  :root { --section: 48px; }
+  :root { --section: 44px; }
+
+  /* Tighter footer columns become single col on very small screens */
+  footer [style*="grid-template-columns: 2fr 1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stronger headline cap for narrow phones */
+  h1.display { font-size: 44px !important; line-height: 0.95 !important; }
+  h2.display { font-size: 32px !important; line-height: 1 !important; }
+
+  /* Footer wordmark won't dwarf the column */
+  footer > div:first-child {
+    font-size: clamp(56px, 18vw, 92px) !important;
+    margin-bottom: 36px !important;
+    padding-bottom: 24px !important;
+  }
 }
