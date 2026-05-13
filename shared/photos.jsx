@@ -1,7 +1,15 @@
-// Real photos provided by Collegare — Dropbox direct links
+// Real photos provided by Collegare — Dropbox sources, served through
+// wsrv.nl which resizes + converts to WebP and edge-caches globally.
+// First request warms the cache (~1-2s), every subsequent visitor gets
+// instant WebP from the nearest CDN node — typical mobile payload drops
+// 60-90% vs the raw Dropbox JPEGs.
 
-const REAL_PHOTOS = {
-  // Marquee photos — curated order
+function px(url, w, q = 75) {
+  return `https://wsrv.nl/?url=${encodeURIComponent(url)}&w=${w}&q=${q}&output=webp`;
+}
+
+// Raw Dropbox sources (kept separate so they're easy to swap later)
+const _SRC = {
   marquee: [
     'https://dl.dropboxusercontent.com/scl/fi/ewth5doouxrzy4ylsu2dl/IMG_5194.jpg?rlkey=dal6kcdar8klxww2t7kj3v8f3&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/s3y7r6w4mtve8odcosgjz/IMG_1053-1.jpg?rlkey=h71g8zkxbn7hpe5z38d43mcf2&raw=1',
@@ -15,16 +23,12 @@ const REAL_PHOTOS = {
     'https://dl.dropboxusercontent.com/scl/fi/lvu42f9qwy31ittpkj0q0/IMG_5192.jpg?rlkey=ngkqwxzb6y8hhlfxsb1vnncny&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/tv7zp222tcb6s6rj56za1/IMG_5201.jpg?rlkey=h6g0mz0vkqp3ia7kqucnsluwc&raw=1',
   ],
-
-  // Talent shots for the homepage hero (curated subset)
   homepageHero: [
     'https://dl.dropboxusercontent.com/scl/fi/uayzou0uqzncoz97dthis/IMG_5202.jpg?rlkey=nse335983zhf1lc06b1pavxt8&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/0cn3gylvjwjuo87wsc1f0/IMG_5200.jpg?rlkey=p7i4zswmwopw33s5coaehyxaz&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/wdgt9r1fx1vw3i9s31sle/IMG_1052-1.jpg?rlkey=z6kgy2rkug6mfapqa7ihpxhj8&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/cjknhtmlmalzq8s52bbhq/IMG_5206.jpg?rlkey=21ip15seeiy018scrj8omxam1&raw=1',
   ],
-
-  // Events photos — specific shots per event for "Collegare On Tour"
   eventHero: [
     'https://dl.dropboxusercontent.com/scl/fi/zjlgofu0odrp7h6x4cn01/Tezza-3735-1.JPG?rlkey=pafeegrj96hnsmbg07hf3b1iv&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/7vxfecovyr16m28pqymsc/IMG_9511-1.JPG?rlkey=9r7ocvjwnfdek9cz37pmk24cb&raw=1',
@@ -36,8 +40,6 @@ const REAL_PHOTOS = {
     dallas:   'https://dl.dropboxusercontent.com/scl/fi/tpt3nm0kk5ubzorygfv7f/_-97.jpeg?rlkey=bcendo3zuwotz1phyu6yv59ts&raw=1',
     la:       'https://dl.dropboxusercontent.com/scl/fi/vfx9c82ztl9dk64exsdhn/Celebrating-33-Years-of-Kookai.jpeg?rlkey=6lg1c02okq9a4uscykhc15qwk&raw=1',
   },
-
-  // Talent shots (randomize across editorial strips and tiles without videos)
   talent: [
     'https://dl.dropboxusercontent.com/scl/fi/s3y7r6w4mtve8odcosgjz/IMG_1053-1.jpg?rlkey=h71g8zkxbn7hpe5z38d43mcf2&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/25itvm4l0isgjqub98yq8/image1-1.jpeg?rlkey=kvlm5lo3srwpiaipiic7kys7q&raw=1',
@@ -60,8 +62,6 @@ const REAL_PHOTOS = {
     'https://dl.dropboxusercontent.com/scl/fi/02xudew5pow6ascox1nn8/IMG_5207.jpg?rlkey=vt8ln61l27y5ztojainob0bsw&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/ch3u3dt6hcgook6uqn3ls/IMG_5208.jpg?rlkey=bek8j6j57r5yf7tvqh3simy3q&raw=1',
   ],
-
-  // Event photos
   events: [
     'https://dl.dropboxusercontent.com/scl/fi/56m4bfa2y1tv9pi3dzpz8/Photo-Feb-11-2026-9-55-18-PM.jpg?rlkey=bnblqrhz5p95857zgxsly5yc0&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/7vxfecovyr16m28pqymsc/IMG_9511-1.JPG?rlkey=9r7ocvjwnfdek9cz37pmk24cb&raw=1',
@@ -69,12 +69,27 @@ const REAL_PHOTOS = {
     'https://dl.dropboxusercontent.com/scl/fi/nym44wt01fnkqtmezfn7r/IMG_9474-1.JPG?rlkey=paoh0mbvd94x2qq70sxepv9lb&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/lhp7roulno15nm0f6mztn/IMG_9471-1.JPG?rlkey=t8avzz1rg9xi7pdhvp5wmg8hq&raw=1',
   ],
-
-  // Team — named portraits
   team: {
     maya:    'https://dl.dropboxusercontent.com/scl/fi/ygex76l337g97vxxpr84q/headshot_maya-1.jpeg?rlkey=3kvlaiutn8amder641hc3291a&raw=1',
     skylar:  'https://dl.dropboxusercontent.com/scl/fi/7kclle8ve9o2omnn2pz2o/headshot_skylar-1.jpeg?rlkey=wvpsh9yctn2gjvtbzfdy4ceyg&raw=1',
     candid:  'https://dl.dropboxusercontent.com/scl/fi/38ild99t2eh226rxrjlky/Photo-Feb-12-2026-10-19-39-AM.jpg?rlkey=5e35f7kuma731z7ooshutumqx&raw=1',
+  },
+};
+
+// Mobile-tuned widths. Browsers downscale automatically, so these target
+// the largest container they show in (Retina × 2). WebP at q=75 is the
+// sweet spot — visually identical, ~60-90% smaller than the source JPEG.
+const REAL_PHOTOS = {
+  marquee:      _SRC.marquee.map(u => px(u, 400)),
+  homepageHero: _SRC.homepageHero.map(u => px(u, 900)),
+  eventHero:    _SRC.eventHero.map(u => px(u, 900)),
+  eventByCity:  Object.fromEntries(Object.entries(_SRC.eventByCity).map(([k, u]) => [k, px(u, 1100)])),
+  talent:       _SRC.talent.map(u => px(u, 700)),
+  events:       _SRC.events.map(u => px(u, 1000)),
+  team: {
+    maya:   px(_SRC.team.maya, 800),
+    skylar: px(_SRC.team.skylar, 800),
+    candid: px(_SRC.team.candid, 1400),
   },
 };
 

@@ -16,7 +16,7 @@ const EVENTS = [
     ticket: '$75 · $120 VIP',
     status: 'next',
     statusLabel: 'Next Up — RSVP soon',
-    rsvp: 'https://lu.ma/collegare-miami', // placeholder Luma link
+    rsvp: 'https://luma.com/f3y9jlhz',
     photo: 'miami',
   },
   {
