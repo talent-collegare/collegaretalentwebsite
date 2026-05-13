@@ -38,9 +38,9 @@ function CareersHero() {
 
       {/* Hero image strip */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6 }}>
-        <img src={REAL_PHOTOS.events[0]} alt="" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.team.candid} alt="" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.events[2]} alt="" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img src={REAL_PHOTOS.team.candid} alt="The Collegare team in studio" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img src={REAL_PHOTOS.events[2]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
       </div>
     </section>
   );

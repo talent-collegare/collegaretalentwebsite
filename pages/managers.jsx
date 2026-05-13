@@ -1,19 +1,19 @@
 // Managers — recruitment / partnership page for talent managers wanting to join Collegare
 
 function MapMark() {
-  // Stylized dotted world map — single Texas marker. Editorial, restrained.
+  // Stylized dotted world map — Texas HQ + the work-from-anywhere arc.
   return (
     <div style={{ width: '100%', position: 'relative' }}>
       <svg viewBox="0 0 800 360" style={{ width: '100%', height: 'auto', display: 'block' }}>
         <defs>
           <radialGradient id="cityGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#8B0D00" stopOpacity="0.6"/>
+            <stop offset="0%" stopColor="#8B0D00" stopOpacity="0.8"/>
             <stop offset="100%" stopColor="#8B0D00" stopOpacity="0"/>
           </radialGradient>
         </defs>
 
         {/* Dot grid forming a stylized world map silhouette */}
-        <g fill="#0F0A07" opacity="0.12">
+        <g fill="#0F0A07" opacity="0.18">
           {(() => {
             const dots = [];
             const inLand = (x, y) => {
@@ -44,15 +44,26 @@ function MapMark() {
           })()}
         </g>
 
-        {/* Single Texas marker — the home base */}
-        <g>
-          <circle cx={132} cy={152} r="28" fill="url(#cityGlow)" />
-          <circle cx={132} cy={152} r="4.5" fill="#8B0D00" />
-          <line x1={132} y1={148} x2={132} y2={124} stroke="#8B0D00" strokeWidth="0.6" opacity="0.5" />
-          <text x={132} y={120} textAnchor="middle" fontSize="9" fontFamily="Be Vietnam Pro, sans-serif" letterSpacing="2" fill="#0F0A07" fontWeight="500">
-            TEXAS — HQ
-          </text>
-        </g>
+        {/* Markers — Texas HQ + Remote-anywhere */}
+        {[
+          { x: 132, y: 152, label: 'Texas' },
+          { x: 545, y: 180, label: 'Remote — anywhere' },
+        ].map((p) => (
+          <g key={p.label}>
+            <circle cx={p.x} cy={p.y} r="22" fill="url(#cityGlow)" />
+            <circle cx={p.x} cy={p.y} r="4" fill="#8B0D00" />
+            <line x1={p.x} y1={p.y - 4} x2={p.x} y2={p.y - 24} stroke="#8B0D00" strokeWidth="0.6" opacity="0.4" />
+            <text x={p.x} y={p.y - 28} textAnchor="middle" fontSize="9" fontFamily="Be Vietnam Pro, sans-serif" letterSpacing="1.5" fill="#0F0A07" fontWeight="500">
+              {p.label.toUpperCase()}
+            </text>
+          </g>
+        ))}
+
+        {/* Subtle connecting arc — Texas to "anywhere" */}
+        <path
+          d={`M 132 152 Q ${(132 + 545) / 2} ${Math.min(152, 180) - 60}, 545 180`}
+          stroke="#8B0D00" strokeWidth="0.8" fill="none" opacity="0.45" strokeDasharray="2 4"
+        />
       </svg>
     </div>
   );

@@ -25,9 +25,9 @@ function BrandsHero() {
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr 1fr', gap: 8 }}>
-        <img src={REAL_PHOTOS.events[0]} alt="" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.events[1]} alt="" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
-        <img src={REAL_PHOTOS.events[2]} alt="" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img src={REAL_PHOTOS.events[0]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img src={REAL_PHOTOS.events[1]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img src={REAL_PHOTOS.events[2]} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
       </div>
     </section>
   );
@@ -224,7 +224,7 @@ function Events() {
       {/* Photo strip */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
         {photos.map((p, i) => (
-          <img key={i} src={p} alt="" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
+          <img key={i} src={p} alt="Collegare event moment" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}/>
         ))}
       </div>
     </section>

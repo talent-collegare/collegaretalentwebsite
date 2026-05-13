@@ -51,7 +51,7 @@ function CaseTile({ brand, line, video, cat, year, fallbackPhoto }) {
           }}
         />
       ) : (
-        <img src={fallbackPhoto} alt="" style={{
+        <img src={fallbackPhoto} alt="Collegare campaign still" style={{
           position: 'absolute', inset: 0, width: '100%', height: '100%',
           objectFit: 'cover',
           transform: hovered ? 'scale(1.04)' : 'scale(1)',
@@ -130,8 +130,8 @@ function CaseHero() {
           campaigns where the creator brings the audience and the brand brings the ambition, and we make sure both show up.
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-          <img src={talentAt(2)} alt="" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
-          <img src={talentAt(5)} alt="" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+          <img src={talentAt(2)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+          <img src={talentAt(5)} alt="Collegare roster talent" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
         </div>
       </div>
     </section>
@@ -148,7 +148,7 @@ function TalentEthos() {
           <div className="index-label" style={{ marginBottom: 24 }}>
             <span className="num">ii.</span><span>Our Ethos</span>
           </div>
-          <img src={photos[0]} alt="" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
+          <img src={photos[0]} alt="Collegare creator" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}/>
         </div>
         <div>
           <p className="display" style={{ fontSize: 'clamp(32px, 4.4vw, 60px)', lineHeight: 1.1, letterSpacing: '-0.015em', marginBottom: 56 }}>
@@ -186,7 +186,7 @@ function TalentEthos() {
 
           {/* Single tasteful talent photo inserted asymmetrically */}
           <div style={{ marginTop: 56, display: 'flex', justifyContent: 'flex-end' }}>
-            <img src={photos[1]} alt="" style={{ width: '40%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+            <img src={photos[1]} alt="Collegare creator" style={{ width: '40%', aspectRatio: '4/5', objectFit: 'cover' }}/>
           </div>
         </div>
       </div>

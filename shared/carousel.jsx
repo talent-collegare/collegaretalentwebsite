@@ -173,7 +173,7 @@ function ByCreatorsMarquee({ hideHeader = false, showSubhead = true }) {
       <div style={{ overflow: 'hidden' }}>
         <div className="marquee-track" style={{ gap: 12, animationDuration: '60s' }}>
           {[...photos, ...photos].map((src, i) => (
-            <img key={i} src={src} alt="" style={{
+            <img key={i} src={src} alt="Collegare creator" style={{
               width: 220, height: 280, objectFit: 'cover', flexShrink: 0,
               display: 'block',
             }}/>
