@@ -1,5 +1,7 @@
 // Managers — recruitment / partnership page for talent managers wanting to join Collegare
 
+const MANAGER_TALLY_URL = 'https://tally.so/r/5Bpjdo';
+
 function MapMark() {
   // Stylized dotted world map — Texas HQ + the work-from-anywhere arc.
   return (
@@ -193,30 +195,11 @@ function WhatWePlugIn() {
 }
 
 function ApplyManager() {
-  const [form, setForm] = React.useState({ name: '', email: '', city: 'New York', roster: '', focus: 'Fashion', note: '' });
-  const [sent, setSent] = React.useState(false);
-
-  const fieldStyle = {
-    width: '100%', background: 'transparent', border: 'none',
-    borderBottom: '1px solid var(--line)', padding: '14px 0',
-    fontSize: 16, fontFamily: 'var(--body)', color: 'var(--ink)', outline: 'none',
-  };
-  const labelStyle = { fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)', fontWeight: 500, marginBottom: 8, display: 'block' };
-
-  if (sent) {
-    return (
-      <section id="apply" style={{ padding: 'var(--section) var(--gutter)', textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div>
-          <h2 className="display" style={{ fontSize: 'clamp(48px, 8vw, 120px)', letterSpacing: '-0.02em', marginBottom: 24 }}>
-            Thank you<em style={{ color: 'var(--crimson)' }}>.</em>
-          </h2>
-          <p className="body-lg" style={{ margin: '0 auto', fontSize: 18 }}>
-            A founding partner will reach out within five business days. Every manager inquiry is read personally.
-          </p>
-        </div>
-      </section>
-    );
-  }
+  const steps = [
+    { n: '01', t: 'Open the application', d: 'A short form — roster, location, category focus, and a note about why now. Five minutes, tops.' },
+    { n: '02', t: 'A founding partner reads it', d: 'Personally. No recruiter, no junior, no template response. Every submission is read by someone who can actually make the decision.' },
+    { n: '03', t: 'You hear back in five business days', d: 'If there is a fit, we set up a conversation. If not, we tell you straight — and we keep the door open for when timing is right.' },
+  ];
 
   return (
     <section id="apply" style={{ padding: 'var(--section) var(--gutter)' }}>
@@ -228,39 +211,37 @@ function ApplyManager() {
           <h2 className="display" style={{ fontSize: 'clamp(40px, 5.5vw, 80px)', letterSpacing: '-0.02em', lineHeight: 0.95, marginBottom: 32 }}>
             Two questions, <em>one note</em>.
           </h2>
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: 360 }}>
+          <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: 360, marginBottom: 32 }}>
             Tell us a little about your roster and where you're at. A founding partner will follow up — no recruiter, no junior, no template.
           </p>
+          <a href={MANAGER_TALLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
+            Start the application <span className="arrow">→</span>
+          </a>
         </div>
-        <form onSubmit={e => { e.preventDefault(); setSent(true); }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 40px', marginBottom: 32 }}>
-            <div><label style={labelStyle}>Full Name</label><input style={fieldStyle} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required/></div>
-            <div><label style={labelStyle}>Email</label><input style={fieldStyle} type="email" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required/></div>
-            <div><label style={labelStyle}>Currently Based</label>
-              <select style={fieldStyle} value={form.city} onChange={e => setForm({ ...form, city: e.target.value })}>
-                {['Texas', 'New York', 'Los Angeles', 'London', 'Other'].map(c => <option key={c}>{c}</option>)}
-              </select>
+
+        <div style={{ borderTop: '1px solid var(--ink)' }}>
+          {steps.map(s => (
+            <div key={s.n} style={{
+              display: 'grid', gridTemplateColumns: '80px 1fr', gap: 32,
+              padding: '36px 0', borderBottom: '1px solid var(--line)', alignItems: 'start',
+            }}>
+              <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 36, color: 'var(--crimson)', lineHeight: 1 }}>{s.n}</div>
+              <div>
+                <h3 className="display" style={{ fontSize: 28, letterSpacing: '-0.01em', lineHeight: 1.1, marginBottom: 12 }}>{s.t}</h3>
+                <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: '54ch' }}>{s.d}</p>
+              </div>
             </div>
-            <div><label style={labelStyle}>Primary Category</label>
-              <select style={fieldStyle} value={form.focus} onChange={e => setForm({ ...form, focus: e.target.value })}>
-                {['Fashion', 'Beauty', 'Culture', 'Food', 'Lifestyle', 'Travel', 'Wellness', 'Design', 'Music', 'Cross-category'].map(c => <option key={c}>{c}</option>)}
-              </select>
+          ))}
+
+          <div style={{ marginTop: 40, padding: 32, background: 'var(--cream-warm)', borderLeft: '3px solid var(--crimson)' }}>
+            <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 22, marginBottom: 12, lineHeight: 1.2 }}>
+              Looking for an open posting?
             </div>
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-soft)' }}>
+              See our current openings on the <a href="careers.html" style={{ color: 'var(--crimson)', textDecoration: 'underline' }}>careers page</a> — or apply through the form above and we'll match you to the right opening.
+            </p>
           </div>
-          <div style={{ marginBottom: 32 }}>
-            <label style={labelStyle}>Roster Size (approx.)</label>
-            <input style={fieldStyle} placeholder="e.g. 6 creators, ~3M combined following" value={form.roster} onChange={e => setForm({ ...form, roster: e.target.value })}/>
-          </div>
-          <div style={{ marginBottom: 32 }}>
-            <label style={labelStyle}>A Note — why now, why Collegare?</label>
-            <textarea style={{ ...fieldStyle, resize: 'vertical', minHeight: 140, lineHeight: 1.55 }}
-              value={form.note} onChange={e => setForm({ ...form, note: e.target.value })}/>
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 24, borderTop: '1px solid var(--line)' }}>
-            <div style={{ fontSize: 12, color: 'var(--ink-soft)' }}>Read personally, every time. Five business days.</div>
-            <button type="submit" className="btn btn--primary">Send Note <span className="arrow">→</span></button>
-          </div>
-        </form>
+        </div>
       </div>
     </section>
   );

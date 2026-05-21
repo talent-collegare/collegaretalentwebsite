@@ -1,5 +1,7 @@
 // Careers — talent manager job listings (Grail-style, not in main nav)
 
+const CAREERS_FORMSPREE = 'https://formspree.io/f/xdajgwej';
+
 const JOBS = [
   { title: 'Influencer Talent Manager — NYC',     dept: 'Talent',     type: 'Full-time', location: 'New York / Remote',     posted: 'Spring 2026' },
   { title: 'Influencer Talent Manager — Dallas',  dept: 'Talent',     type: 'Full-time', location: 'Dallas / Remote',       posted: 'Spring 2026' },
@@ -82,7 +84,7 @@ function WhyJoin() {
   );
 }
 
-function OpenRoles() {
+function OpenRoles({ onSelectRole }) {
   const [dept, setDept] = React.useState('All');
   const [loc, setLoc] = React.useState('All');
 
@@ -147,7 +149,7 @@ function OpenRoles() {
       ) : (
         <div style={{ borderTop: '1px solid var(--ink)' }}>
           {filtered.map((j, i) => (
-            <a key={j.title} href={`#apply-${i}`} style={{
+            <a key={j.title} href="#apply" onClick={() => onSelectRole && onSelectRole(j.title)} style={{
               display: 'grid',
               gridTemplateColumns: '60px 3fr 1fr 1fr 1.2fr 40px',
               gap: 24,
@@ -181,24 +183,54 @@ function OpenRoles() {
   );
 }
 
-function GeneralApplication() {
-  const [sent, setSent] = React.useState(false);
+function GeneralApplication({ selectedRole, onClearRole }) {
+  const [status, setStatus] = React.useState('idle'); // idle | sending | sent | error
+  const roleRef = React.useRef(null);
+
+  // Scroll-prefill: when a job is clicked above, focus the role field for context.
+  React.useEffect(() => {
+    if (selectedRole && roleRef.current) {
+      roleRef.current.focus({ preventScroll: true });
+    }
+  }, [selectedRole]);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus('sending');
+    const formData = new FormData(e.target);
+    const role = formData.get('role') || 'Open application';
+    formData.set('_subject', `Careers — ${role}`);
+    try {
+      const res = await fetch(CAREERS_FORMSPREE, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' },
+      });
+      if (res.ok) setStatus('sent');
+      else setStatus('error');
+    } catch (_err) {
+      setStatus('error');
+    }
+  }
+
   return (
-    <section style={{ padding: 'var(--section) var(--gutter)' }}>
+    <section id="apply" style={{ padding: 'var(--section) var(--gutter)', scrollMarginTop: 100 }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80, alignItems: 'start' }}>
         <div style={{ position: 'sticky', top: 120 }}>
           <div className="index-label" style={{ marginBottom: 24 }}>
-            <span className="num">iv.</span><span>Open Application</span>
+            <span className="num">iv.</span><span>{selectedRole ? 'Apply to this role' : 'Open Application'}</span>
           </div>
           <h2 className="display" style={{ fontSize: 'clamp(40px, 5.5vw, 80px)', letterSpacing: '-0.02em', lineHeight: 0.95, marginBottom: 24 }}>
-            Don't see your <em style={{ color: 'var(--crimson)' }}>fit</em>?
+            {selectedRole ? <>Tell us about your <em style={{ color: 'var(--crimson)' }}>fit</em>.</> : <>Don't see your <em style={{ color: 'var(--crimson)' }}>fit</em>?</>}
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: 360 }}>
-            We hire ahead of postings when we meet someone exceptional. Send us a note about what you'd want to build at Collegare.
+            {selectedRole
+              ? 'Send us a note with your work, a link or two, and a few lines about why this role. We respond to every applicant.'
+              : "We hire ahead of postings when we meet someone exceptional. Send us a note about what you'd want to build at Collegare."}
           </p>
         </div>
 
-        {sent ? (
+        {status === 'sent' ? (
           <div style={{ padding: '60px 0' }}>
             <h2 className="display" style={{ fontSize: 'clamp(48px, 7vw, 100px)', letterSpacing: '-0.02em', marginBottom: 24 }}>
               Thank you<em style={{ color: 'var(--crimson)' }}>.</em>
@@ -208,24 +240,44 @@ function GeneralApplication() {
             </p>
           </div>
         ) : (
-          <form onSubmit={e => { e.preventDefault(); setSent(true); }}>
+          <form onSubmit={handleSubmit}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 40px', marginBottom: 32 }}>
-              <div><label style={fieldLabel}>Name</label><input style={fieldInput} required/></div>
-              <div><label style={fieldLabel}>Email</label><input style={fieldInput} type="email" required/></div>
-              <div><label style={fieldLabel}>Where you're based</label><input style={fieldInput} placeholder="TX, NY, LA, Remote..."/></div>
-              <div><label style={fieldLabel}>Role of interest</label><input style={fieldInput} placeholder="Talent, Partnerships, Ops..."/></div>
+              <div><label style={fieldLabel}>Name</label><input name="name" style={fieldInput} required/></div>
+              <div><label style={fieldLabel}>Email</label><input name="email" style={fieldInput} type="email" required/></div>
+              <div><label style={fieldLabel}>Where you're based</label><input name="location" style={fieldInput} placeholder="TX, NY, LA, Remote..."/></div>
+              <div>
+                <label style={fieldLabel}>Role of interest</label>
+                <input
+                  ref={roleRef}
+                  name="role"
+                  style={fieldInput}
+                  placeholder="Talent, Partnerships, Ops..."
+                  defaultValue={selectedRole || ''}
+                  key={selectedRole || 'open'}
+                  onChange={() => { if (selectedRole && onClearRole) onClearRole(); }}
+                />
+              </div>
             </div>
             <div style={{ marginBottom: 32 }}>
               <label style={fieldLabel}>Link to your work or LinkedIn</label>
-              <input style={fieldInput} placeholder="https://"/>
+              <input name="portfolio" style={fieldInput} placeholder="https://"/>
             </div>
             <div style={{ marginBottom: 32 }}>
               <label style={fieldLabel}>A Note — what would you want to build here?</label>
-              <textarea style={{ ...fieldInput, resize: 'vertical', minHeight: 140, lineHeight: 1.55 }}/>
+              <textarea name="note" style={{ ...fieldInput, resize: 'vertical', minHeight: 140, lineHeight: 1.55 }}/>
             </div>
+
+            {status === 'error' && (
+              <div style={{ padding: 16, marginBottom: 24, background: 'rgba(139,13,0,0.06)', borderLeft: '3px solid var(--crimson)', fontSize: 14, color: 'var(--ink)' }}>
+                Something went wrong sending your application. Try again, or email <a href="mailto:careers@collegaretalentmanagement.com" style={{ color: 'var(--crimson)', textDecoration: 'underline' }}>careers@collegaretalentmanagement.com</a> directly.
+              </div>
+            )}
+
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 24, borderTop: '1px solid var(--line)' }}>
               <div style={{ fontSize: 12, color: 'var(--ink-soft)' }}>Read personally. Two weeks, always.</div>
-              <button type="submit" className="btn btn--primary">Send Note <span className="arrow">→</span></button>
+              <button type="submit" disabled={status === 'sending'} className="btn btn--primary" style={{ opacity: status === 'sending' ? 0.6 : 1, cursor: status === 'sending' ? 'wait' : 'pointer' }}>
+                {status === 'sending' ? 'Sending...' : <>Send Note <span className="arrow">→</span></>}
+              </button>
             </div>
           </form>
         )}
@@ -242,14 +294,15 @@ const fieldInput = {
 const fieldLabel = { fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)', fontWeight: 500, marginBottom: 8, display: 'block' };
 
 function Careers() {
+  const [selectedRole, setSelectedRole] = React.useState('');
   return (
     <div>
       <Nav />
       <main>
         <CareersHero />
         <WhyJoin />
-        <OpenRoles />
-        <GeneralApplication />
+        <OpenRoles onSelectRole={setSelectedRole} />
+        <GeneralApplication selectedRole={selectedRole} onClearRole={() => setSelectedRole('')} />
       </main>
       <ByCreatorsMarquee />
       <Footer />

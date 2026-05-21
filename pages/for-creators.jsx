@@ -1,5 +1,7 @@
 // For Creators — pitch for talent to sign / apply
 
+const CREATOR_AIRTABLE_URL = 'https://airtable.com/appAiXhXWH4MLG61p/pagWpIdISrkgDqeUY/form';
+
 function CreatorsHero() {
   return (
     <section style={{ padding: '160px var(--gutter) 0', borderBottom: '1px solid var(--line)' }}>
@@ -99,36 +101,11 @@ function WhatWeDont() {
 }
 
 function Apply() {
-  const [form, setForm] = React.useState({ name: '', handle: '', category: 'Fashion', platform: 'Instagram', followers: '', note: '' });
-  const [sent, setSent] = React.useState(false);
-
-  const fieldStyle = {
-    width: '100%',
-    background: 'transparent',
-    border: 'none',
-    borderBottom: '1px solid var(--line)',
-    padding: '14px 0',
-    fontSize: 16,
-    fontFamily: 'var(--body)',
-    color: 'var(--ink)',
-    outline: 'none',
-  };
-  const labelStyle = { fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)', fontWeight: 500, marginBottom: 8, display: 'block' };
-
-  if (sent) {
-    return (
-      <section id="apply" style={{ padding: 'var(--section) var(--gutter)', textAlign: 'center', minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div>
-          <h2 className="display" style={{ fontSize: 'clamp(48px, 8vw, 120px)', letterSpacing: '-0.02em', marginBottom: 24 }}>
-            Thank you<em style={{ color: 'var(--crimson)' }}>.</em>
-          </h2>
-          <p className="body-lg" style={{ margin: '0 auto', fontSize: 18 }}>
-            Your application is in. If there's a fit, you'll hear from someone on our team within two weeks.
-          </p>
-        </div>
-      </section>
-    );
-  }
+  const steps = [
+    { n: '01', t: 'Open the application', d: "It's hosted on Airtable, takes about three minutes — name, handles, category, following, and a short note." },
+    { n: '02', t: 'We review every submission', d: "Personally. No automated screening, no follower thresholds. We read your note before we look at your numbers." },
+    { n: '03', t: 'You hear back in two weeks', d: "If there's a fit, we'll be in touch to start a conversation. If not, we tell you — honestly, with care." },
+  ];
 
   return (
     <section id="apply" style={{ padding: 'var(--section) var(--gutter)' }}>
@@ -140,51 +117,40 @@ function Apply() {
           <h2 className="display" style={{ fontSize: 'clamp(48px, 6vw, 88px)', letterSpacing: '-0.02em', lineHeight: 0.95, marginBottom: 32 }}>
             Tell us about your <em>work</em>.
           </h2>
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: 360 }}>
-            A small form. No tiers, no follower minimums. We review every submission, and we read every note.
+          <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: 360, marginBottom: 32 }}>
+            No tiers, no follower minimums. We review every submission, and we read every note.
           </p>
+          <a href={CREATOR_AIRTABLE_URL} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
+            Start the application <span className="arrow">→</span>
+          </a>
         </div>
-        <form onSubmit={e => { e.preventDefault(); setSent(true); }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 40px' }}>
-            <div>
-              <label style={labelStyle}>Full Name</label>
-              <input style={fieldStyle} value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required/>
+
+        <div style={{ borderTop: '1px solid var(--ink)' }}>
+          {steps.map(s => (
+            <div key={s.n} style={{
+              display: 'grid', gridTemplateColumns: '80px 1fr', gap: 32,
+              padding: '36px 0', borderBottom: '1px solid var(--line)', alignItems: 'start',
+            }}>
+              <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 36, color: 'var(--crimson)', lineHeight: 1 }}>{s.n}</div>
+              <div>
+                <h3 className="display" style={{ fontSize: 28, letterSpacing: '-0.01em', lineHeight: 1.1, marginBottom: 12 }}>{s.t}</h3>
+                <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: '54ch' }}>{s.d}</p>
+              </div>
             </div>
-            <div>
-              <label style={labelStyle}>Primary Handle</label>
-              <input style={fieldStyle} value={form.handle} onChange={e => setForm({ ...form, handle: e.target.value })} placeholder="@" required/>
+          ))}
+
+          <div style={{ marginTop: 40, padding: 32, background: 'var(--cream-warm)', borderLeft: '3px solid var(--crimson)' }}>
+            <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 22, marginBottom: 12, lineHeight: 1.2 }}>
+              Already in conversation with us?
             </div>
-            <div>
-              <label style={labelStyle}>Category</label>
-              <select style={fieldStyle} value={form.category} onChange={e => setForm({ ...form, category: e.target.value })}>
-                {['Fashion', 'Beauty', 'Culture', 'Food', 'Lifestyle', 'Travel', 'Wellness', 'Design', 'Music', 'Other'].map(c => <option key={c}>{c}</option>)}
-              </select>
-            </div>
-            <div>
-              <label style={labelStyle}>Primary Platform</label>
-              <select style={fieldStyle} value={form.platform} onChange={e => setForm({ ...form, platform: e.target.value })}>
-                {['Instagram', 'TikTok', 'YouTube', 'Substack', 'Other'].map(c => <option key={c}>{c}</option>)}
-              </select>
-            </div>
-            <div>
-              <label style={labelStyle}>Following (approx.)</label>
-              <input style={fieldStyle} value={form.followers} onChange={e => setForm({ ...form, followers: e.target.value })} placeholder="e.g. 240K"/>
-            </div>
-            <div>
-              <label style={labelStyle}>Current Management?</label>
-              <input style={fieldStyle} placeholder="Agency name, or none"/>
-            </div>
-            <div style={{ gridColumn: '1 / -1' }}>
-              <label style={labelStyle}>A Note — why Collegare?</label>
-              <textarea style={{ ...fieldStyle, resize: 'vertical', minHeight: 110, lineHeight: 1.5 }}
-                value={form.note} onChange={e => setForm({ ...form, note: e.target.value })}/>
-            </div>
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-soft)' }}>
+              Skip the form — reply to the email thread you're already on, or write directly to{' '}
+              <a href="mailto:talent@collegaretalentmanagement.com" style={{ color: 'var(--crimson)', textDecoration: 'underline' }}>
+                talent@collegaretalentmanagement.com
+              </a>.
+            </p>
           </div>
-          <div style={{ marginTop: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ fontSize: 12, color: 'var(--ink-soft)' }}>We review within two weeks. Not every creator is a fit — we're honest either way.</div>
-            <button type="submit" className="btn btn--primary">Submit Application <span className="arrow">→</span></button>
-          </div>
-        </form>
+        </div>
       </div>
     </section>
   );
