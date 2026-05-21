@@ -28,7 +28,7 @@ function CareersHero() {
         </p>
         <p style={{ fontSize: 14, color: 'var(--ink-soft)', lineHeight: 1.65 }}>
           <span className="small-caps" style={{ color: 'var(--crimson)', display: 'block', marginBottom: 8 }}>What you get</span>
-          Senior partner mentorship, industry-leading commission structure for revenue roles, real equity for senior hires, and the kind of small-team ownership the big agencies can't offer.
+          Senior partner mentorship, real responsibility from week one, work that touches the talent and the brands, and the kind of small-team access the big agencies can't offer.
         </p>
       </div>
 
@@ -44,12 +44,12 @@ function CareersHero() {
 
 function WhyJoin() {
   const blocks = [
-    { t: 'Ownership, not hierarchy',
-      d: "You'll work directly with the founders and senior partners. Every role at Collegare ships consequential work — no junior layers, no internal politics, no week-long approval chains." },
-    { t: 'Industry-leading economics',
-      d: "Revenue-generating roles share in real upside through an industry-leading commission structure. Senior hires have a real path to equity and partnership." },
-    { t: 'A small house, on purpose',
-      d: "We will not be the biggest. We will be the one the strongest creators and managers stay with the longest. Our team is built for compounding, not for headcount growth." },
+    { t: 'Real responsibility, day one',
+      d: "Interns ship real work at Collegare — deal research, campaign decks, talent prep notes, event production. You'll sit in on partner calls and own a piece of work that touches the talent, the brand, or both. No coffee runs." },
+    { t: 'Direct access to the table',
+      d: "You'll work alongside the founding partners — the people actually closing the deals and signing the talent. The lessons you'll take with you are the ones every junior at a big agency waits years to overhear." },
+    { t: 'A path forward',
+      d: "Strong interns get the first call when full-time seats open. The summers we hire matter — the team we build now is the one we'll grow with for years." },
   ];
   return (
     <section style={{ padding: 'var(--section) var(--gutter)' }}>
