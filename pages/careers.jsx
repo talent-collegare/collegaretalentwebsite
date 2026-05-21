@@ -3,19 +3,13 @@
 const CAREERS_FORMSPREE = 'https://formspree.io/f/xdajgwej';
 
 const JOBS = [
-  { title: 'Influencer Talent Manager — NYC',     dept: 'Talent',     type: 'Full-time', location: 'New York / Remote',     posted: 'Spring 2026' },
-  { title: 'Influencer Talent Manager — Dallas',  dept: 'Talent',     type: 'Full-time', location: 'Dallas / Remote',       posted: 'Spring 2026' },
-  { title: 'Influencer Talent Manager — LA',      dept: 'Talent',     type: 'Full-time', location: 'Los Angeles / Remote',  posted: 'Spring 2026' },
-  { title: 'Influencer Talent Manager — Utah',    dept: 'Talent',     type: 'Full-time', location: 'Utah / Remote',         posted: 'Spring 2026' },
-  { title: 'Influencer Talent Manager — Chicago', dept: 'Talent',     type: 'Full-time', location: 'Chicago / Remote',      posted: 'Spring 2026' },
-  { title: 'Influencer Talent Manager — Miami',   dept: 'Talent',     type: 'Full-time', location: 'Miami / Remote',        posted: 'Spring 2026' },
   { title: 'College Summer Internship — Events',           dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026' },
   { title: 'College Summer Internship — Sales',            dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026' },
   { title: 'College Summer Internship — Social / Content', dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026' },
 ];
 
-const DEPARTMENTS = ['All', 'Talent', 'Internships'];
-const LOCATIONS = ['All', 'New York', 'Dallas', 'Los Angeles', 'Utah', 'Chicago', 'Miami', 'Remote'];
+const DEPARTMENTS = ['All', 'Internships'];
+const LOCATIONS = ['All', 'Remote'];
 
 function CareersHero() {
   return (
