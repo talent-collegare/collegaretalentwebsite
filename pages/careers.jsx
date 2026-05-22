@@ -2,11 +2,18 @@
 
 const INTERNSHIP_TALLY_URL = 'https://tally.so/r/aQa4QE';
 
+// `lane` must match the exact option label in the Tally form's "Which internship lane?"
+// question — Tally URL prefill requires character-for-character match.
 const JOBS = [
-  { title: 'College Summer Internship — Events',           dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026' },
-  { title: 'College Summer Internship — Sales',            dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026' },
-  { title: 'College Summer Internship — Social / Content', dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026' },
+  { title: 'College Summer Internship — Events',                     dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026', lane: 'Events' },
+  { title: 'College Summer Internship — Digital & Sales Marketing',  dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026', lane: 'Digital & Sales Marketing' },
+  { title: 'College Summer Internship — Social and Content',         dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026', lane: 'Social and Content' },
+  { title: 'College Summer Internship — Talent Management',          dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026', lane: 'Talent Management' },
 ];
+
+function tallyUrlForLane(lane) {
+  return `${INTERNSHIP_TALLY_URL}?lane=${encodeURIComponent(lane)}`;
+}
 
 const DEPARTMENTS = ['All', 'Internships'];
 const LOCATIONS = ['All', 'Remote'];
@@ -143,7 +150,7 @@ function OpenRoles() {
       ) : (
         <div style={{ borderTop: '1px solid var(--ink)' }}>
           {filtered.map((j, i) => (
-            <a key={j.title} href="#apply" style={{
+            <a key={j.title} href={tallyUrlForLane(j.lane)} target="_blank" rel="noopener noreferrer" style={{
               display: 'grid',
               gridTemplateColumns: '60px 3fr 1fr 1fr 1.2fr 40px',
               gap: 24,
@@ -168,7 +175,7 @@ function OpenRoles() {
               <span className="small-caps" style={{ color: 'var(--ink-soft)' }}>{j.dept}</span>
               <span style={{ fontSize: 13, color: 'var(--ink-soft)' }}>{j.type}</span>
               <span style={{ fontSize: 13, color: 'var(--ink-soft)' }}>{j.location}</span>
-              <span style={{ fontSize: 18, color: 'var(--ink-soft)' }}>→</span>
+              <span style={{ fontSize: 18, color: 'var(--ink-soft)' }} aria-label="opens in new tab">↗</span>
             </a>
           ))}
         </div>
