@@ -1,6 +1,6 @@
 // Careers — talent manager job listings (Grail-style, not in main nav)
 
-const CAREERS_FORMSPREE = 'https://formspree.io/f/xdajgwej';
+const INTERNSHIP_TALLY_URL = 'https://tally.so/r/aQa4QE';
 
 const JOBS = [
   { title: 'College Summer Internship — Events',           dept: 'Internships', type: 'Internship', location: 'Remote', posted: 'Summer 2026' },
@@ -78,7 +78,7 @@ function WhyJoin() {
   );
 }
 
-function OpenRoles({ onSelectRole }) {
+function OpenRoles() {
   const [dept, setDept] = React.useState('All');
   const [loc, setLoc] = React.useState('All');
 
@@ -143,7 +143,7 @@ function OpenRoles({ onSelectRole }) {
       ) : (
         <div style={{ borderTop: '1px solid var(--ink)' }}>
           {filtered.map((j, i) => (
-            <a key={j.title} href="#apply" onClick={() => onSelectRole && onSelectRole(j.title)} style={{
+            <a key={j.title} href="#apply" style={{
               display: 'grid',
               gridTemplateColumns: '60px 3fr 1fr 1fr 1.2fr 40px',
               gap: 24,
@@ -177,126 +177,69 @@ function OpenRoles({ onSelectRole }) {
   );
 }
 
-function GeneralApplication({ selectedRole, onClearRole }) {
-  const [status, setStatus] = React.useState('idle'); // idle | sending | sent | error
-  const roleRef = React.useRef(null);
-
-  // Scroll-prefill: when a job is clicked above, focus the role field for context.
-  React.useEffect(() => {
-    if (selectedRole && roleRef.current) {
-      roleRef.current.focus({ preventScroll: true });
-    }
-  }, [selectedRole]);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setStatus('sending');
-    const formData = new FormData(e.target);
-    const role = formData.get('role') || 'Open application';
-    formData.set('_subject', `Careers — ${role}`);
-    try {
-      const res = await fetch(CAREERS_FORMSPREE, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' },
-      });
-      if (res.ok) setStatus('sent');
-      else setStatus('error');
-    } catch (_err) {
-      setStatus('error');
-    }
-  }
+function GeneralApplication() {
+  const steps = [
+    { n: '01', t: 'Pick your role and share your story', d: 'The form asks which internship, plus a few lines about your school, your year, and why this matters to you. About five minutes.' },
+    { n: '02', t: 'We read every submission', d: 'Personally. No automated screening, no GPA cutoffs. We read your note before we look at anything else.' },
+    { n: '03', t: 'You hear back in two weeks', d: 'If there is a fit, we set up a call. If not, we tell you straight — and we keep your application on file for the next cycle.' },
+  ];
 
   return (
     <section id="apply" style={{ padding: 'var(--section) var(--gutter)', scrollMarginTop: 100 }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80, alignItems: 'start' }}>
         <div style={{ position: 'sticky', top: 120 }}>
           <div className="index-label" style={{ marginBottom: 24 }}>
-            <span className="num">iv.</span><span>{selectedRole ? 'Apply to this role' : 'Open Application'}</span>
+            <span className="num">iv.</span><span>Apply</span>
           </div>
           <h2 className="display" style={{ fontSize: 'clamp(40px, 5.5vw, 80px)', letterSpacing: '-0.02em', lineHeight: 0.95, marginBottom: 24 }}>
-            {selectedRole ? <>Tell us about your <em style={{ color: 'var(--crimson)' }}>fit</em>.</> : <>Don't see your <em style={{ color: 'var(--crimson)' }}>fit</em>?</>}
+            Tell us about your <em style={{ color: 'var(--crimson)' }}>fit</em>.
           </h2>
-          <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: 360 }}>
-            {selectedRole
-              ? 'Send us a note with your work, a link or two, and a few lines about why this role. We respond to every applicant.'
-              : "We hire ahead of postings when we meet someone exceptional. Send us a note about what you'd want to build at Collegare."}
+          <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: 360, marginBottom: 32 }}>
+            One application, three internships. Pick the role that fits — and tell us why it's the one.
           </p>
+          <a href={INTERNSHIP_TALLY_URL} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
+            Start the application <span className="arrow">→</span>
+          </a>
         </div>
 
-        {status === 'sent' ? (
-          <div style={{ padding: '60px 0' }}>
-            <h2 className="display" style={{ fontSize: 'clamp(48px, 7vw, 100px)', letterSpacing: '-0.02em', marginBottom: 24 }}>
-              Thank you<em style={{ color: 'var(--crimson)' }}>.</em>
-            </h2>
-            <p className="body-lg" style={{ fontSize: 18 }}>
-              Your note is in. We read every application personally — expect a response within two weeks.
+        <div style={{ borderTop: '1px solid var(--ink)' }}>
+          {steps.map(s => (
+            <div key={s.n} style={{
+              display: 'grid', gridTemplateColumns: '80px 1fr', gap: 32,
+              padding: '36px 0', borderBottom: '1px solid var(--line)', alignItems: 'start',
+            }}>
+              <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 36, color: 'var(--crimson)', lineHeight: 1 }}>{s.n}</div>
+              <div>
+                <h3 className="display" style={{ fontSize: 28, letterSpacing: '-0.01em', lineHeight: 1.1, marginBottom: 12 }}>{s.t}</h3>
+                <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink-soft)', maxWidth: '54ch' }}>{s.d}</p>
+              </div>
+            </div>
+          ))}
+
+          <div style={{ marginTop: 40, padding: 32, background: 'var(--cream-warm)', borderLeft: '3px solid var(--crimson)' }}>
+            <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 22, marginBottom: 12, lineHeight: 1.2 }}>
+              Looking for a full-time role?
+            </div>
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: 'var(--ink-soft)' }}>
+              Manager openings are on the <a href="managers.html" style={{ color: 'var(--crimson)', textDecoration: 'underline' }}>For Managers</a> page. For anything else, write directly to{' '}
+              <a href="mailto:careers@collegaretalentmanagement.com" style={{ color: 'var(--crimson)', textDecoration: 'underline' }}>careers@collegaretalentmanagement.com</a>.
             </p>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px 40px', marginBottom: 32 }}>
-              <div><label style={fieldLabel}>Name</label><input name="name" style={fieldInput} required/></div>
-              <div><label style={fieldLabel}>Email</label><input name="email" style={fieldInput} type="email" required/></div>
-              <div><label style={fieldLabel}>Where you're based</label><input name="location" style={fieldInput} placeholder="TX, NY, LA, Remote..."/></div>
-              <div>
-                <label style={fieldLabel}>Role of interest</label>
-                <input
-                  ref={roleRef}
-                  name="role"
-                  style={fieldInput}
-                  placeholder="Talent, Partnerships, Ops..."
-                  defaultValue={selectedRole || ''}
-                  key={selectedRole || 'open'}
-                  onChange={() => { if (selectedRole && onClearRole) onClearRole(); }}
-                />
-              </div>
-            </div>
-            <div style={{ marginBottom: 32 }}>
-              <label style={fieldLabel}>Link to your work or LinkedIn</label>
-              <input name="portfolio" style={fieldInput} placeholder="https://"/>
-            </div>
-            <div style={{ marginBottom: 32 }}>
-              <label style={fieldLabel}>A Note — what would you want to build here?</label>
-              <textarea name="note" style={{ ...fieldInput, resize: 'vertical', minHeight: 140, lineHeight: 1.55 }}/>
-            </div>
-
-            {status === 'error' && (
-              <div style={{ padding: 16, marginBottom: 24, background: 'rgba(139,13,0,0.06)', borderLeft: '3px solid var(--crimson)', fontSize: 14, color: 'var(--ink)' }}>
-                Something went wrong sending your application. Try again, or email <a href="mailto:careers@collegaretalentmanagement.com" style={{ color: 'var(--crimson)', textDecoration: 'underline' }}>careers@collegaretalentmanagement.com</a> directly.
-              </div>
-            )}
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 24, borderTop: '1px solid var(--line)' }}>
-              <div style={{ fontSize: 12, color: 'var(--ink-soft)' }}>Read personally. Two weeks, always.</div>
-              <button type="submit" disabled={status === 'sending'} className="btn btn--primary" style={{ opacity: status === 'sending' ? 0.6 : 1, cursor: status === 'sending' ? 'wait' : 'pointer' }}>
-                {status === 'sending' ? 'Sending...' : <>Send Note <span className="arrow">→</span></>}
-              </button>
-            </div>
-          </form>
-        )}
+        </div>
       </div>
     </section>
   );
 }
 
-const fieldInput = {
-  width: '100%', background: 'transparent', border: 'none',
-  borderBottom: '1px solid var(--line)', padding: '14px 0',
-  fontSize: 16, fontFamily: 'var(--body)', color: 'var(--ink)', outline: 'none',
-};
-const fieldLabel = { fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--ink-soft)', fontWeight: 500, marginBottom: 8, display: 'block' };
-
 function Careers() {
-  const [selectedRole, setSelectedRole] = React.useState('');
   return (
     <div>
       <Nav />
       <main>
         <CareersHero />
         <WhyJoin />
-        <OpenRoles onSelectRole={setSelectedRole} />
-        <GeneralApplication selectedRole={selectedRole} onClearRole={() => setSelectedRole('')} />
+        <OpenRoles />
+        <GeneralApplication />
       </main>
       <ByCreatorsMarquee />
       <Footer />
