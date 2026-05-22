@@ -232,9 +232,9 @@ function Footer({ dark = false }) {
         <div>
           <div className="eyebrow" style={{ color: 'rgba(254,252,240,0.6)', marginBottom: 16 }}>Follow</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 13 }}>
-            <a href="https://instagram.com/collegare" target="_blank" rel="noopener" style={{ opacity: 0.85 }}>Instagram</a>
-            <a href="https://tiktok.com/@collegare" target="_blank" rel="noopener" style={{ opacity: 0.85 }}>TikTok</a>
-            <a href="https://linkedin.com/company/collegare" target="_blank" rel="noopener" style={{ opacity: 0.85 }}>LinkedIn</a>
+            <a href="https://www.instagram.com/collegaretalent/" target="_blank" rel="noopener noreferrer" style={{ opacity: 0.85 }}>Instagram</a>
+            <a href="https://www.tiktok.com/@collegaretalent" target="_blank" rel="noopener noreferrer" style={{ opacity: 0.85 }}>TikTok</a>
+            <a href="https://www.linkedin.com/company/collegare1/" target="_blank" rel="noopener noreferrer" style={{ opacity: 0.85 }}>LinkedIn</a>
             <a href="mailto:contact@collegaretalentmanagement.com" style={{ opacity: 0.85 }}>Email</a>
           </div>
         </div>
