@@ -26,7 +26,7 @@ const _SRC = {
   homepageHero: [
     'https://dl.dropboxusercontent.com/scl/fi/uayzou0uqzncoz97dthis/IMG_5202.jpg?rlkey=nse335983zhf1lc06b1pavxt8&raw=1',
     'https://dl.dropboxusercontent.com/scl/fi/0cn3gylvjwjuo87wsc1f0/IMG_5200.jpg?rlkey=p7i4zswmwopw33s5coaehyxaz&raw=1',
-    'https://dl.dropboxusercontent.com/scl/fi/wdgt9r1fx1vw3i9s31sle/IMG_1052-1.jpg?rlkey=z6kgy2rkug6mfapqa7ihpxhj8&raw=1',
+    'shared/photos/hero-talent-2.png',
     'https://dl.dropboxusercontent.com/scl/fi/cjknhtmlmalzq8s52bbhq/IMG_5206.jpg?rlkey=21ip15seeiy018scrj8omxam1&raw=1',
   ],
   eventHero: [
@@ -81,7 +81,7 @@ const _SRC = {
 // sweet spot — visually identical, ~60-90% smaller than the source JPEG.
 const REAL_PHOTOS = {
   marquee:      _SRC.marquee.map(u => px(u, 400)),
-  homepageHero: _SRC.homepageHero.map(u => px(u, 900)),
+  homepageHero: _SRC.homepageHero.map(u => u.startsWith('http') ? px(u, 900) : u),
   eventHero:    _SRC.eventHero.map(u => px(u, 900)),
   eventByCity:  Object.fromEntries(Object.entries(_SRC.eventByCity).map(([k, u]) => [k, px(u, 1100)])),
   talent:       _SRC.talent.map(u => px(u, 700)),

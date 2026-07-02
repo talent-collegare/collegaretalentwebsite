@@ -3,9 +3,13 @@
 // Shows Collegare's top 3 brand campaigns.
 
 const TOP_CAMPAIGNS = [
-  { brand: 'Olly Wellness', line: 'Daily rituals, made charismatic.',     video: 'olly_wellness',  cat: 'Wellness' },
-  { brand: 'Cheers Health', line: 'Wellness for the morning after.',      video: 'cheers_health',  cat: 'Wellness' },
-  { brand: 'Melting Pod',   line: 'A scent story for the season.',        video: 'melting_forest', cat: 'Lifestyle' },
+  { brand: 'Bloom Nutrition',      line: 'The greens ritual, on repeat.',           video: 'bloom_nutrition', cat: 'Wellness' },
+  { brand: 'Black Hair Vitamins',  line: 'A beauty routine that gets results.',     video: 'bgv',             cat: 'Beauty'   },
+  { brand: 'Amazon',               line: 'Everyday finds, curated by the house.',   video: 'amazon',          cat: 'Lifestyle'},
+  { brand: 'Camp Brandit',         line: 'A creator moment, live from the room.',   video: 'campbrandit',     cat: 'Events'   },
+  { brand: 'Olly Wellness',        line: 'Daily rituals, made charismatic.',        video: 'olly_wellness',   cat: 'Wellness' },
+  { brand: 'Cheers Health',        line: 'Wellness for the morning after.',         video: 'cheers_health',   cat: 'Wellness' },
+  { brand: 'Melting Pod',          line: 'A scent story for the season.',           video: 'melting_forest',  cat: 'Lifestyle'},
 ];
 
 function CarouselTile({ video, brand, line, cat }) {

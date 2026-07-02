@@ -16,6 +16,10 @@ const VIDEOS = {
   melting_forest:   'https://dl.dropboxusercontent.com/scl/fi/e64scei6977t51tcv8el6/Meltingforest_leo.mov?rlkey=qewcxk2aaq2of67fl7jmpte73&raw=1',
   olly_wellness:    'https://dl.dropboxusercontent.com/scl/fi/1422hf9g12yrzkxgd6131/OllyWellness_pattymoore.MOV?rlkey=bmomsx60ri9uoy772m3bf3js7&raw=1',
   verano_hill:      'https://dl.dropboxusercontent.com/scl/fi/4btdus6mat16s970urokw/veranohill_pattymoore.MOV?rlkey=e1qqautsvq5dcgconcl2vd8zc&raw=1',
+  bloom_nutrition:  'https://yb12bhry6t1axjrm.public.blob.vercel-storage.com/bloom_nutrition_leo.mov',
+  bgv:              'https://yb12bhry6t1axjrm.public.blob.vercel-storage.com/bgv_video.mov',
+  amazon:           'https://yb12bhry6t1axjrm.public.blob.vercel-storage.com/amazon_ashton.mp4',
+  campbrandit:      'https://yb12bhry6t1axjrm.public.blob.vercel-storage.com/campbrandit_ashton.mp4',
 };
 
 Object.assign(window, { VIDEOS });
