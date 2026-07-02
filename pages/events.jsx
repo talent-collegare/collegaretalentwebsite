@@ -355,7 +355,6 @@ function EventsPage() {
       <main>
         <OnTourComingSoon />
       </main>
-      <SelectedWorkCarousel eyebrowNum="ii" headline="Campaigns in motion." />
       <ByCreatorsMarquee />
       <Footer />
     </div>
