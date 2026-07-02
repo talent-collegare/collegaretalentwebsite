@@ -20,7 +20,7 @@ function BrandsHero() {
           </p>
           <div style={{ display: 'flex', gap: 12 }}>
             <a href="contact.html" className="btn btn--primary">Start a Project <span className="arrow">→</span></a>
-            <a href="#capabilities" className="btn btn--ghost">Our Capabilities</a>
+            <a href="#collective" className="btn btn--ghost">The Creator Collective</a>
           </div>
         </div>
       </div>
@@ -67,6 +67,205 @@ function Capabilities() {
   );
 }
 
+function CreatorCollective() {
+  const tiers = [
+    {
+      name: 'Pilot Sprint',
+      cadence: 'One-time · 6 weeks',
+      price: '$9,500',
+      pill: 'Start here',
+      highlights: [
+        '4–6 creators, one 6-week activation',
+        'Content built with whitelisting rights baked in',
+        'One clean report tying content to results',
+      ],
+    },
+    {
+      name: 'Spark',
+      cadence: 'Starter · 3-month min',
+      price: '$6,000 / mo',
+      pill: 'Retainer',
+      highlights: [
+        '4 creators each month',
+        '8–12 content assets monthly',
+        'Organic briefs, whitelisting-ready',
+        'Monthly performance report',
+      ],
+    },
+    {
+      name: 'Engine',
+      cadence: 'Core · 3-month min',
+      price: '$9,000 / mo',
+      pill: 'Most popular',
+      featured: true,
+      highlights: [
+        '6–8 creators each month',
+        '16–20 content assets monthly',
+        'Spark Ads + partnership ads setup',
+        'Monthly report + paid performance read',
+        'Quarterly strategy + creator refresh',
+      ],
+    },
+    {
+      name: 'Flywheel',
+      cadence: 'Premium · 3-month min',
+      price: '$12K+ / mo',
+      pill: 'Full-service',
+      highlights: [
+        '10+ creators each month',
+        '24+ content assets monthly',
+        'Full organic + paid management',
+        'Dedicated warm creator pool',
+        '$2,500 quarterly experiential credit',
+      ],
+    },
+  ];
+
+  const collectiveTypes = [
+    {
+      t: 'Creators',
+      k: 'For conversion & paid UGC',
+      d: "Content you own. Scroll-stopping assets your brand runs as ads and organic. Chosen for hook-ability and turnaround, not follower count.",
+    },
+    {
+      t: 'Influencers',
+      k: 'For awareness & proof',
+      d: "Audience and credibility. They post to their own followers to drive awareness and social proof. Vetted on real engagement, audience fit, and brand safety.",
+    },
+    {
+      t: 'Hybrid Creators',
+      k: 'For full-funnel',
+      d: "Both at once. They post to their audience and license the content so it extends into your paid account. The most efficient way to cover awareness and conversion in one booking.",
+    },
+  ];
+
+  return (
+    <section id="collective" style={{
+      background: 'var(--ink)',
+      color: 'var(--cream)',
+      padding: 'var(--section) var(--gutter)',
+      borderTop: '1px solid var(--line)',
+      borderBottom: '1px solid var(--line)',
+    }}>
+      {/* Header */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 60, alignItems: 'end', marginBottom: 64 }}>
+        <div>
+          <div className="index-label" style={{ marginBottom: 24, color: 'rgba(254,252,240,0.65)' }}>
+            <span className="num" style={{ color: 'var(--cream-warm)' }}>iii.</span>
+            <span>The Creator Collective</span>
+          </div>
+          <h2 className="display" style={{ fontSize: 'clamp(56px, 9vw, 140px)', letterSpacing: '-0.025em', lineHeight: 0.9 }}>
+            An always-on <em style={{ color: 'var(--cream-warm)' }}>creator engine</em> for your brand.
+          </h2>
+        </div>
+        <div>
+          <p style={{ fontSize: 18, lineHeight: 1.55, opacity: 0.9, marginBottom: 28, maxWidth: '52ch' }}>
+            Stop asking "who do we activate for this launch." Behind every program is the Collegare Creator Collective —
+            our vetted, applied-in community of creators — staffing your brand with a steady drip of on-brand content,
+            month over month. Warm creators. Content briefed for organic and built to extend into paid.
+          </p>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a href="contact.html" className="btn btn--cream">Book a call <span className="arrow">→</span></a>
+            <a href="contact.html" className="btn" style={{ border: '1px solid rgba(254,252,240,0.3)', color: 'var(--cream)' }}>
+              Start a Pilot Sprint
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Old way vs Collegare */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, borderTop: '1px solid rgba(254,252,240,0.25)', marginBottom: 72 }}>
+        <div style={{ padding: '32px 40px 32px 0', borderRight: '1px solid rgba(254,252,240,0.15)' }}>
+          <div className="small-caps" style={{ color: 'rgba(254,252,240,0.55)', marginBottom: 12 }}>The old way</div>
+          <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 28, lineHeight: 1.2, marginBottom: 12, letterSpacing: '-0.01em' }}>
+            Campaign by campaign.
+          </div>
+          <p style={{ fontSize: 14, lineHeight: 1.6, opacity: 0.75, maxWidth: '46ch' }}>
+            Scramble to find creators for each launch. Negotiate from scratch. Hope they fit the brand.
+            Go cold the moment the campaign ends — then repeat the whole thing next quarter.
+          </p>
+        </div>
+        <div style={{ padding: '32px 0 32px 40px' }}>
+          <div className="small-caps" style={{ color: 'var(--cream-warm)', marginBottom: 12 }}>With Collegare</div>
+          <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 28, lineHeight: 1.2, marginBottom: 12, letterSpacing: '-0.01em', color: 'var(--cream-warm)' }}>
+            A warm engine, always on.
+          </div>
+          <p style={{ fontSize: 14, lineHeight: 1.6, opacity: 0.85, maxWidth: '46ch' }}>
+            A rotating pool of vetted, on-brand creators producing a steady drip of content month over month —
+            briefed for organic, built to extend into your paid ads, always ready for the next moment.
+          </p>
+        </div>
+      </div>
+
+      {/* Who's in the Collective */}
+      <div style={{ marginBottom: 72 }}>
+        <div className="small-caps" style={{ color: 'var(--cream-warm)', marginBottom: 16 }}>The right creator for the right job</div>
+        <h3 className="display" style={{ fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.015em', lineHeight: 1.05, marginBottom: 40, maxWidth: '18ch' }}>
+          Not every creator does the same thing.
+        </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, borderTop: '1px solid rgba(254,252,240,0.2)' }}>
+          {collectiveTypes.map((c, i) => (
+            <div key={c.t} style={{
+              padding: '32px 32px 32px 0',
+              borderRight: i < 2 ? '1px solid rgba(254,252,240,0.15)' : 'none',
+              paddingLeft: i > 0 ? 32 : 0,
+            }}>
+              <div className="small-caps" style={{ color: 'var(--cream-warm)', marginBottom: 12 }}>{c.k}</div>
+              <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 32, letterSpacing: '-0.01em', marginBottom: 16, lineHeight: 1 }}>
+                {c.t}
+              </div>
+              <p style={{ fontSize: 14, lineHeight: 1.6, opacity: 0.8 }}>{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Programs & pricing */}
+      <div style={{ marginBottom: 40 }}>
+        <div className="small-caps" style={{ color: 'var(--cream-warm)', marginBottom: 16 }}>Programs &amp; pricing</div>
+        <h3 className="display" style={{ fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.015em', lineHeight: 1.05, marginBottom: 40, maxWidth: '20ch' }}>
+          Start with a sprint. Scale to always-on.
+        </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+          {tiers.map(t => (
+            <div key={t.name} style={{
+              background: t.featured ? 'var(--crimson)' : 'transparent',
+              border: '1px solid ' + (t.featured ? 'var(--crimson)' : 'rgba(254,252,240,0.25)'),
+              padding: '28px 24px 32px',
+              display: 'flex', flexDirection: 'column',
+              minHeight: 380,
+            }}>
+              <div className="small-caps" style={{ color: t.featured ? 'var(--cream-warm)' : 'rgba(254,252,240,0.6)', marginBottom: 10 }}>
+                {t.pill}
+              </div>
+              <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 32, letterSpacing: '-0.01em', lineHeight: 1, marginBottom: 8 }}>
+                {t.name}
+              </div>
+              <div style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', opacity: 0.7, marginBottom: 18 }}>
+                {t.cadence}
+              </div>
+              <div style={{ fontFamily: 'var(--display)', fontSize: 34, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 24, paddingBottom: 20, borderBottom: '1px solid rgba(254,252,240,0.2)' }}>
+                {t.price}
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: 13, lineHeight: 1.5, opacity: 0.9 }}>
+                {t.highlights.map(h => (
+                  <li key={h} style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
+                    <span style={{ color: 'var(--cream-warm)', flexShrink: 0 }}>—</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <p style={{ fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.6, marginTop: 24 }}>
+          50% deposit to start · Retainers billed quarterly · Experiential activations from $7,500
+        </p>
+      </div>
+    </section>
+  );
+}
+
 function Process() {
   const steps = [
     { n: '01', t: 'Brief', d: 'We start with your audience, your objectives, and the cultural context you want to step into. A kickoff conversation becomes a working brief within a week.' },
@@ -78,7 +277,7 @@ function Process() {
   return (
     <section style={{ background: 'var(--cream-warm)', color: 'var(--ink)', padding: 'var(--section) var(--gutter)', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
       <div className="index-label" style={{ marginBottom: 50 }}>
-        <span className="num">iii.</span><span>The Process</span>
+        <span className="num">iv.</span><span>The Process</span>
       </div>
       <h2 className="display" style={{ fontSize: 'clamp(56px, 9vw, 140px)', letterSpacing: '-0.025em', marginBottom: 80, lineHeight: 0.9 }}>
         How we <em style={{ color: 'var(--crimson)' }}>work</em>.
@@ -122,7 +321,7 @@ function Clients() {
   return (
     <section style={{ padding: 'var(--section) var(--gutter)' }}>
       <div className="index-label" style={{ marginBottom: 40 }}>
-        <span className="num">v.</span><span>Selected Clients</span>
+        <span className="num">vi.</span><span>Selected Clients</span>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '1px solid var(--line)' }}>
         {clients.map((c, i) => (
@@ -204,7 +403,7 @@ function Events() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', marginBottom: 56 }}>
         <div>
           <div className="index-label" style={{ marginBottom: 20 }}>
-            <span className="num">iv.</span><span>Events &amp; Activations</span>
+            <span className="num">v.</span><span>Events &amp; Activations</span>
           </div>
           <h2 className="display" style={{ fontSize: 'clamp(48px, 7vw, 110px)', letterSpacing: '-0.025em', lineHeight: 0.95 }}>
             The rooms <em>we</em> build.
@@ -255,10 +454,11 @@ function ForBrands() {
       <main>
         <BrandsHero />
         <Capabilities />
+        <CreatorCollective />
         <Process />
         <Events />
         <Clients />
-        <FAQ eyebrowNum="vi" items={BRAND_FAQS} />
+        <FAQ eyebrowNum="vii" items={BRAND_FAQS} />
         <BrandsCTA />
         <ByCreatorsMarquee />
       </main>

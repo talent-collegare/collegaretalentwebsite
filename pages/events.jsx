@@ -309,16 +309,53 @@ function EventsCTA() {
   );
 }
 
+function OnTourComingSoon() {
+  const photos = REAL_PHOTOS.eventHero;
+  return (
+    <section style={{ padding: '180px var(--gutter) 100px', borderBottom: '1px solid var(--line)' }}>
+      <div className="index-label" style={{ marginBottom: 40 }}>
+        <span className="num">i.</span><span>Collegare On Tour</span>
+      </div>
+      <h1 className="display" style={{ fontSize: 'clamp(72px, 13vw, 220px)', lineHeight: 0.85, letterSpacing: '-0.03em', marginBottom: 48 }}>
+        Coming <em style={{ color: 'var(--crimson)' }}>Late 2026</em>.
+      </h1>
+      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr', gap: 40, alignItems: 'end', paddingTop: 40, borderTop: '1px solid var(--line-soft)', marginBottom: 60 }}>
+        <p className="body-lg" style={{ fontSize: 20 }}>
+          The Collegare On Tour creator event series returns later this year — four intimate,
+          fully themed activations across wellness, brand strategy, creator business, and fashion.
+          Cities, dates, and the ticketed calendar are being finalized. Get on the list to hear it first.
+        </p>
+        <div style={{ fontSize: 12, color: 'var(--ink-soft)', lineHeight: 1.7 }}>
+          <div className="small-caps" style={{ color: 'var(--crimson)', marginBottom: 6 }}>What to expect</div>
+          Four cities.<br/>
+          Four themed nights.<br/>
+          50–100 creators each.<br/>
+          Brand activations built in.
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <a href="contact.html" className="btn btn--primary">Get on the list <span className="arrow">→</span></a>
+          <a href="contact.html" className="btn btn--ghost">Sponsor a stop</a>
+        </div>
+      </div>
+
+      {/* Hero image strip — keeps the page visually rich */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6 }}>
+        <img loading="lazy" src={photos[0]} alt="Collegare On Tour — past event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={photos[1]} alt="Collegare On Tour — past event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+        <img loading="lazy" src={photos[2]} alt="Collegare On Tour — past event moment" style={{ width: '100%', aspectRatio: '4/5', objectFit: 'cover' }}/>
+      </div>
+    </section>
+  );
+}
+
 function EventsPage() {
   return (
     <div>
       <Nav />
       <main>
-        <EventsHero />
-        <EventList />
-        <EventPromise />
-        <EventsCTA />
+        <OnTourComingSoon />
       </main>
+      <SelectedWorkCarousel eyebrowNum="ii" headline="Campaigns in motion." />
       <ByCreatorsMarquee />
       <Footer />
     </div>

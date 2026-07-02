@@ -3,6 +3,10 @@
 // Instead the work IS the proof — brand campaign tiles, each featuring talent.
 
 const ALL_CAMPAIGNS = [
+  { brand: 'Bloom Nutrition',     line: 'The greens ritual, on repeat.',            video: 'bloom_nutrition', cat: 'Wellness',    year: '2026' },
+  { brand: 'Black Hair Vitamins', line: 'A beauty routine that gets results.',      video: 'bgv',             cat: 'Beauty',      year: '2026' },
+  { brand: 'Amazon',              line: 'Everyday finds, curated by the house.',    video: 'amazon',          cat: 'Lifestyle',   year: '2026' },
+  { brand: 'Camp Brandit',        line: 'A creator moment, live from the room.',    video: 'campbrandit',     cat: 'Events',      year: '2026' },
   { brand: 'Olly Wellness',       line: 'Daily rituals, made charismatic.',         video: 'olly_wellness',   cat: 'Wellness',    year: '2025' },
   { brand: 'Cheers Health',       line: 'Wellness for the morning after.',          video: 'cheers_health',   cat: 'Wellness',    year: '2025' },
   { brand: 'Verano Hill',         line: 'A property launched into culture.',        video: 'verano_hill',     cat: 'Hospitality', year: '2025' },
@@ -10,7 +14,7 @@ const ALL_CAMPAIGNS = [
   { brand: 'Melting Pod',         line: 'A scent story for the season.',            video: 'melting_forest',  cat: 'Lifestyle',   year: '2025' },
 ];
 
-const CATEGORIES = ['All', 'Wellness', 'Food', 'Lifestyle', 'Hospitality'];
+const CATEGORIES = ['All', 'Wellness', 'Beauty', 'Food', 'Lifestyle', 'Hospitality', 'Events'];
 
 function CaseTile({ brand, line, video, cat, year, fallbackPhoto }) {
   const [hovered, setHovered] = React.useState(false);

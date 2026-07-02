@@ -100,6 +100,82 @@ function WhatWeDont() {
   );
 }
 
+function CollectiveForCreators() {
+  const perks = [
+    {
+      t: 'In-house paid campaigns',
+      d: "Whitelisted UGC, always-on retainers, gifting-to-partnership pipelines — steady work with the brands we've already earned trust with. Rates negotiated, contracts handled, usage rights clear.",
+    },
+    {
+      t: 'Community events',
+      d: "First look at Collegare On Tour and creator dinners, workshops, and pop-ups we produce with brand partners. Rooms our talent actually want to be in.",
+    },
+    {
+      t: 'Real briefs, real feedback',
+      d: "Warm intros to briefs matched to your audience. Honest feedback on pitches, decks, and rates so you keep getting sharper — not just louder.",
+    },
+  ];
+
+  return (
+    <section style={{
+      background: 'var(--ink)',
+      color: 'var(--cream)',
+      padding: 'var(--section) var(--gutter)',
+    }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 60, alignItems: 'end', marginBottom: 56 }}>
+        <div>
+          <div className="index-label" style={{ marginBottom: 24, color: 'rgba(254,252,240,0.65)' }}>
+            <span className="num" style={{ color: 'var(--cream-warm)' }}>iv.</span>
+            <span>The Creator Collective</span>
+          </div>
+          <h2 className="display" style={{ fontSize: 'clamp(48px, 8vw, 120px)', letterSpacing: '-0.025em', lineHeight: 0.92 }}>
+            Not ready for full <em style={{ color: 'var(--cream-warm)' }}>management</em>? Join the <em style={{ color: 'var(--cream-warm)' }}>Collective</em>.
+          </h2>
+        </div>
+        <div>
+          <p style={{ fontSize: 18, lineHeight: 1.55, opacity: 0.9, marginBottom: 28, maxWidth: '52ch' }}>
+            The Collegare Creator Collective is our applied-in community of creators — the warm pool we staff onto every
+            brand program. It's for creators looking for in-house paid campaigns, community events, and a partner in their
+            corner without a full management contract. Vetted on real engagement, not follower count.
+          </p>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a href="#apply" className="btn btn--cream">Apply to the Collective <span className="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, borderTop: '1px solid rgba(254,252,240,0.25)' }}>
+        {perks.map((p, i) => (
+          <div key={p.t} style={{
+            padding: '32px 32px 32px 0',
+            borderRight: i < 2 ? '1px solid rgba(254,252,240,0.15)' : 'none',
+            paddingLeft: i > 0 ? 32 : 0,
+          }}>
+            <div style={{ fontFamily: 'var(--display)', fontStyle: 'italic', fontSize: 28, color: 'var(--cream-warm)', letterSpacing: '-0.005em', lineHeight: 1.1, marginBottom: 12 }}>
+              — {p.t}
+            </div>
+            <p style={{ fontSize: 14, lineHeight: 1.65, opacity: 0.85 }}>{p.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style={{
+        marginTop: 40, padding: '20px 24px',
+        border: '1px solid rgba(254,252,240,0.2)',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        gap: 24, flexWrap: 'wrap',
+      }}>
+        <span style={{ fontSize: 13, opacity: 0.85, letterSpacing: '0.02em' }}>
+          Use the same application — tell us in the note whether you're applying for management, the Collective, or both.
+        </span>
+        <a href="#apply" style={{ color: 'var(--cream-warm)', fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+          Start the application →
+        </a>
+      </div>
+    </section>
+  );
+}
+
 function Apply() {
   const steps = [
     { n: '01', t: 'Open the application', d: "It's hosted on Airtable, takes about three minutes — name, handles, category, following, and a short note." },
@@ -112,7 +188,7 @@ function Apply() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: 80, alignItems: 'start' }}>
         <div style={{ position: 'sticky', top: 120 }}>
           <div className="index-label" style={{ marginBottom: 24 }}>
-            <span className="num">iv.</span><span>Apply</span>
+            <span className="num">v.</span><span>Apply</span>
           </div>
           <h2 className="display" style={{ fontSize: 'clamp(48px, 6vw, 88px)', letterSpacing: '-0.02em', lineHeight: 0.95, marginBottom: 32 }}>
             Tell us about your <em>work</em>.
@@ -164,6 +240,7 @@ function ForCreators() {
         <CreatorsHero />
         <WhatWeDo />
         <WhatWeDont />
+        <CollectiveForCreators />
         <Apply />
       </main>
       <SelectedWorkCarousel eyebrowNum="v" headline="Campaigns in motion." />
