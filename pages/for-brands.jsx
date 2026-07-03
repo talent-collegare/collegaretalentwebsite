@@ -72,7 +72,7 @@ function CreatorCollective() {
     {
       name: 'Pilot Sprint',
       cadence: 'One-time · 6 weeks',
-      price: '$9,500',
+      price: '$15,000',
       pill: 'Start here',
       highlights: [
         '4–6 creators, one 6-week activation',
@@ -83,7 +83,7 @@ function CreatorCollective() {
     {
       name: 'Spark',
       cadence: 'Starter · 3-month min',
-      price: '$6,000 / mo',
+      price: '$9,000 / mo',
       pill: 'Retainer',
       highlights: [
         '4 creators each month',
@@ -95,7 +95,7 @@ function CreatorCollective() {
     {
       name: 'Engine',
       cadence: 'Core · 3-month min',
-      price: '$9,000 / mo',
+      price: '$15,000 / mo',
       pill: 'Most popular',
       featured: true,
       highlights: [
@@ -109,7 +109,7 @@ function CreatorCollective() {
     {
       name: 'Flywheel',
       cadence: 'Premium · 3-month min',
-      price: '$12K+ / mo',
+      price: '$25K+ / mo',
       pill: 'Full-service',
       highlights: [
         '10+ creators each month',
@@ -117,6 +117,18 @@ function CreatorCollective() {
         'Full organic + paid management',
         'Dedicated warm creator pool',
         '$2,500 quarterly experiential credit',
+      ],
+    },
+    {
+      name: 'Custom',
+      cadence: 'Enterprise · Custom scope',
+      price: "Let's talk",
+      pill: 'Bespoke',
+      highlights: [
+        'Bespoke creator volume & mix',
+        'Multi-market, always-on programs',
+        'Experiential + paid at scale',
+        'Dedicated strategy & account team',
       ],
     },
   ];
@@ -226,7 +238,7 @@ function CreatorCollective() {
         <h3 className="display" style={{ fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.015em', lineHeight: 1.05, marginBottom: 40, maxWidth: '20ch' }}>
           Start with a sprint. Scale to always-on.
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: 12 }}>
           {tiers.map(t => (
             <div key={t.name} style={{
               background: t.featured ? 'var(--crimson)' : 'transparent',
@@ -259,7 +271,7 @@ function CreatorCollective() {
           ))}
         </div>
         <p style={{ fontSize: 12, letterSpacing: '0.06em', textTransform: 'uppercase', opacity: 0.6, marginTop: 24 }}>
-          50% deposit to start · Retainers billed quarterly · Experiential activations from $7,500
+          All-in rates cover creator budget + program management · 50% deposit to start · Retainers billed quarterly · Experiential activations from $15,000
         </p>
       </div>
     </section>
